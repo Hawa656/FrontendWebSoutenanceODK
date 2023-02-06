@@ -1,0 +1,182 @@
+<div class="tout">
+    <div class="avanttout">
+        <div class="container mt-5 text-align-items mb-5">
+            <div class="affacer ">
+                <div class="row borderContour">
+                    <!-- -----------------partie gauche------------------------ -->
+                    <div class="col-12 col-md-6 d-flex align-items-center bgRigth cardGaucheContour">
+                        <div class="row">
+                           
+                            <h1 class="display-5 text-center pt-4  text-white title fw-bolder">Bienvenue !</h1>
+                            <div class="mt-4 margin">
+                                <div class=" text-center  trait "></div>
+                            </div>
+                          
+                            <img class="img-fluid logo   margin" src="../../assets/logoC.png" alt="logo">
+                            <p class="text-center  text-white">
+                                Votre application qui vous permet  de cultiver 
+                                vos fruits et légumes en toute simplicité.
+                            </p>
+                        
+                        </div>
+                    </div>
+                    <!-- -----------------partie droite------------------------ -->
+                    <div class="col-12 col-md-6" style="background: rgba(255, 255, 255, 0.42);">
+                        <div class="row py-3 mx-2">
+                            <div class="allRight text-white">
+                                <h1 class="mb-3 pt-3  fs-1 fw-bolder text-center">Connexion</h1>
+                                <!-- -----------------formulaire------------------------ -->
+                                <form
+                                *ngIf="!isLoggedIn"
+                                name="form"
+                                (ngSubmit)="f.form.valid && onSubmit()"
+                                #f="ngForm"
+                                novalidate
+                                >
+                                    <div class="col-12 col-md-12">
+                                        <div class="mb-3">
+                                            <label for="exampleInputPseudo" class="form-label">Numéro ou Email</label>
+                                            <input  id="exampleInputPseudo"
+                                            type="text"
+                                            class="form-control"
+                                            name="numeroOrEmail"
+                                            [(ngModel)]="form.numeroOrEmail"
+                                            required
+                                            #numeroOrEmail="ngModel"
+                                            [ngClass]="{ 'is-invalid': f.submitted && numeroOrEmail.errors }"
+                                            >
+                                            <div *ngIf="numeroOrEmail.errors && f.submitted" class="invalid-feedback">
+                                                numero ou l'email est obligatoire!
+                                              </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-12">
+                                        <div class="mb-3">
+                                            <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
+                                            <input  id="exampleInputPassword1"
+                                            type="password"
+                                            class="form-control"
+                                            name="password"
+                                            [(ngModel)]="form.password"
+                                            required
+                                            minlength="6"
+                                            #password="ngModel"
+                                            [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
+                                            >
+                                            <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
+                                                <div *ngIf="password.errors['required']">Mot de passe obligatoire</div>
+                                                <div *ngIf="password.errors['minlength']">
+                                                  le mot de passe doit avoir au moins 6 caratères
+                                                </div>
+                                              </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class=" pt-3">
+                                        <a href="">
+                                            <p class="barP text-center fw-bold">Mot de passe oublier? </p>
+                                        </a>
+                                        
+                                    </div>
+    
+                                    <div class="col-12 col-md-12 mt-4 ">
+                                        <div class="btnLogin ">
+                                           <input type="submit" value="Connexion" class="form-control button2 fw-bold text-white">
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-group">
+                                        <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger" role="alert">
+                                          Login failed: {{ errorMessage }}
+                                        </div>
+                                      </div>
+                                </form>
+                                
+                                <div class="alert alert-success" *ngIf="isLoggedIn">
+                                    Logged in as {{ roles }}.
+                                    <button (click)="logout()"></button>
+                                  </div>
+                                
+                                <!-- -----------------Icons------------------------ -->
+                                <div class="row mb-3">
+                                    <div class="d-flex justify-content-center">
+                                        <div>
+                                            <i class="bi bi-facebook sizeIconsFacebook"></i>
+                                        </div>
+                                        <div>
+                                            <i class="bi bi-google sizeIconsGoogle"></i>
+                                        </div>
+                                        <div>
+                                            <i class="bi bi-github sizeIconsGitHub"></i>
+                                        </div>
+        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <!-- ----------------------pop up inscription------------------------ -->
+    <!-- ==================================Pour inserer le pop up ========================
+    ===================================================================================-->
+    
+    <!-- Aller sur la documentation officiel de boostrap puis y copier le code qui se trouve dans modal(que tu tape dans la barre de recherche)
+    dans mon cas le pop up doit apparaitre lorsque on clic sur: créer un compte? donc copier le:
+    data-bs-toggle="modal" data-bs-target="#exampleModal qui se trouve dans la balise button et le coller dans la balise a -->
+    <!-- Button trigger modal -->
+    <!-- <button type="button" class="btn btn-primary text-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Créer un compte ?
+      </button> -->
+    
+    <!-- Modal
+    <div class="container">
+        <div class="popUp">
+            <div class="row">
+                <div class="col-12 col-md-12 ">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5 text-center textPop" id="exampleModalLabel">Inscription</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="" method="post">
+                                        <div class="row">
+                                            <div class="col-12 col-md-12 mb-3">
+                                                <label for="Nom">Pseudo</label>
+                                                <input type="text" class="form-control" id="inputNom"
+                                                    placeholder="Entrer votre pseudo">
+                                            </div>
+                                            <div class="col-12 col-md-12 mb-3">
+                                                <label for="Nom">Mot de passe</label>
+                                                <input type="password" class="form-control" id="inputNom"
+                                                    placeholder="Entrer votre mot de passe">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="">
+                                        <button type="button" class="btn btn-secondary button"
+                                            data-bs-dismiss="modal">Confirmer</button>
+                                    </a>
+                                    <a href="">
+                                        <button type="button" class="btn btn-primary button2">Annuler</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    
+</div>

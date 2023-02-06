@@ -1,0 +1,50 @@
+.tout{
+     //background: url(../../assets/connexion.jpg);
+     background-image: url(../../assets/connexion.jpg);
+     background-size: 100%; 
+    background-size: cover;    
+    height: 100vh;
+    
+    overflow-y: hidden;
+     //background: linear-gradient(0deg, rgba(50, 50, 50, 0), rgba(0, 0, 0, 0.0001)), url(../../assets/connexion.jpg);
+}
+.avanttout{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 73px;
+}
+.button2,
+.btn
+{
+    background-color: #FBC201;
+    border: none;
+}
+.barP{
+    color: #FBC201;
+   
+}
+a{
+    text-decoration: none ;
+}
+.title{
+    font-size: 90px;
+}
+.trait{
+    height: 10px;
+    width: 100px;
+    background: white;
+    margin-left: 100px;
+}
+.logo{
+    width: 40%;
+    height: 40%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin: 10px auto;
+}
+.margin{
+    margin-bottom: 60px;
+}

@@ -1,0 +1,42 @@
+<mat-toolbar >
+    <mat-toolbar-row class="justify-content-between bg-dark opacity-100">
+      <button mat-icon-button (click)="toggleSidebar()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="row mr-2 ml-auto">
+        <ul class="row m-0 align-items-center">
+          <li>
+            <button
+              mat-button
+              [matMenuTriggerFor]="menu"
+              class="user mt-2 d-flex align-items-center"
+            >
+            <div class="col-6 col-md-6">
+              <button type="button" class="btn-primary position-relative">
+                <i class="bi bi-bell"></i>
+                <span
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-danger"
+                >
+                  99+
+                </span>
+              </button>
+            </div>
+              <img src="../../assets/2.png" alt="" class="user-image mr-1 p-2" />
+  
+              <span style="color: white;">User Name</span>
+              <mat-icon class="user-image-icon ml-1 text-white"
+                >keyboard_arrow_down</mat-icon
+              >
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>exit_to_app</mat-icon>
+                Logout
+              </button>
+            </mat-menu>
+          </li>
+        </ul>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  

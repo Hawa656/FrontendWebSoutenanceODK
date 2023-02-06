@@ -1,0 +1,133 @@
+
+
+
+
+
+
+<div class="container-fluid margeContainer">
+  <div class="container content ">
+    <div class="col-12 offset-md-2 col-md-8 pb-5">
+      <div class="tout bg-light">
+        <div class="row">
+          <form action="" method="post"
+          *ngIf="!isSuccessful"
+          name="form"
+          (ngSubmit)="f.form.valid && onSubmit()"
+          #f="ngForm"
+          novalidate
+          >
+            <h2 class="text-center pb-4">Ajouter Un Tutoriel</h2>
+            <fieldset>
+              <div class="row mb-3">
+                <div class="form-group col-12 col-md-6 ">
+                  <label for="NomRegion">Nom </label>
+                  <input  class="form-control" id="inputNomRegion" placeholder=""
+                  type="text"
+                  name="nom"
+                  [(ngModel)]="form.nom"
+                  required
+                  #nom="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && nom.errors }"
+                  >
+                </div>
+                <div class="invalid-feedback" *ngIf="nom.errors && f.submitted">
+                  <div *ngIf="nom.errors['required']">Le nom est obligatoire</div>
+                </div>
+                
+                <div class="form-group col-12 col-md-6 mb-3">
+                  <label for="NomPays">Type</label>
+                  <select name="pets" id="pet-select" class="form-control">
+                    <option value=""><i class="bi bi-chevron-down"></i><option>
+                    <option value="dog">Légume</option>
+                    <option value="cat">Fruit</option>
+                  </select>  
+                </div>  
+                <div class="row mb-3">
+                  <div class="form-group">
+                    <label for="Description">Description du fruit ou légume</label>
+                    <textarea class="form-control" id="Description" rows="3" placeholder=""></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="form-group col-12 col-md-6 ">
+                  <label for="periodeNormal">Période normal</label>
+                  <input type="text" name="form.periodeNormal" class="form-control" id="form.periodeNormal" placeholder="">
+                </div>
+                <div class="form-group col-12 col-md-6 ">
+                  <label for="LangueMajoritairementParlée">Arrosage</label>
+                  <input type="text" class="form-control" id="inputLangueMajoritairementParlée" placeholder="">
+                </div>  
+              </div>
+              <div class="row mb-3">
+                <div class="form-group col-12 col-md-6 mb-3">
+                  <label for="ChiffresPopulation">Récolte</label>
+                  <input type="text" class="form-control" id="inputChiffresPopulation" placeholder="">
+                </div>
+                <div class="form-group col-12 col-md-6 mb-3">
+                  <label for="ChiffresPopulation">Titre du tutoriel</label>
+                  <input type="text" class="form-control" id="inputChiffresPopulation" placeholder="">
+                </div>
+                <div class="row mb-3">
+                  <div class="form-group">
+                    <label for="Description">Description du tutoriel</label>
+                    <textarea class="form-control" id="Description" rows="3" placeholder=""></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+              <div class="form-group col-12 col-md-6 mb-3">
+                <label for="ChiffresPopulation">Photo</label>
+                <input type="file" (change)="filechange($event)" class="form-control" id="inputChiffresPopulation" placeholder="">
+              </div>
+              <!-- <div class="form-group col-12 col-md-6 mb-3">
+                <label for="ChiffresPopulation">Vidéo</label>
+                <input type="file" class="form-control" id="inputChiffresPopulation" placeholder="">
+              </div> -->
+            </div>
+              <div class="row mb-3">
+                <div class="form-group col-12 col-md-6 ">
+                  <label for="ChiffresPopulation">Etat de la terre</label>
+                  <input type="text" class="form-control" id="inputChiffresPopulation" placeholder="">
+                </div>
+                <div class="form-group col-12 col-md-6 mb-3">
+                  <label for="Superficie">Espacement entre graine</label>
+                  <input type="text" class="form-control" id="inputSuperficie" placeholder="">
+                </div>  
+              </div>
+              <div class="row mb-3">
+                <div class="form-group col-12 col-md-6 mb-3">
+                  <label for="NomPays">Sémis</label>
+                  <select name="pets" id="pet-select" class="form-control">
+                    <option value="">choisir </option>
+                    <option value="dog">Oui</option>
+                    <option value="cat">Non</option>
+                  </select>  
+                </div>  
+                <div class="form-group col-12 col-md-6 mb-3">
+                  <label for="NomPays">Bouture</label>
+                  <select name="pets" id="pet-select" class="form-control">
+                    <option value="">choisir </option>
+                    <option value="dog">Oui</option>
+                    <option value="cat">Nom</option>
+                  </select>  
+                </div>  
+                
+                </div>
+              <button type="submit" class="btn btn-primary mb-2 connexion text-white align-items-center">Valider</button>
+              <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                tutoriel non Ajouter!<br />{{ errorMessage }}
+              </div>
+            </fieldset>
+          </form>
+          <div class="alert alert-success" *ngIf="isSuccessful">
+            Tutoriel ajouter avec succès!
+          </div>
+        </div>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+
