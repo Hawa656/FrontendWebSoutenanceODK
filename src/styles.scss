@@ -39,3 +39,24 @@ $FrontendWeb-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+
+
+// ===================MODAL===========================
+//POUR RENDRE LE MODAL FONCTIONNEL VU QUE QUAND TU L'INSERE 
+//TOUTE PARTIE DE TA PAGE DEVIENS NON CLICABLE
+
+.modal-backdrop {
+  --bs-backdrop-zindex: 0; 
+  --bs-backdrop-bg: #000;
+  --bs-backdrop-opacity: 0.5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--bs-backdrop-zindex);
+  width: 100vw;
+  height: 0;
+  background-color: var(--bs-backdrop-bg);
+}

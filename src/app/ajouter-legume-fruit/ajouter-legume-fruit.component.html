@@ -35,50 +35,88 @@
                 </div>
                 
                 <div class="form-group col-12 col-md-6 mb-3">
-                  <label for="NomPays">Type</label>
-                  <select name="pets" id="pet-select" class="form-control">
-                    <option value=""><i class="bi bi-chevron-down"></i><option>
-                    <option value="dog">Légume</option>
-                    <option value="cat">Fruit</option>
+                  <label for="type">Type</label>
+                  <select name="type"  [(ngModel)]="form.type" id="pet-select" class="form-control" >
+                    <!-- <option value=""><i class="bi bi-chevron-down"></i><option> -->
+                    <option [value]="Type.type" *ngFor="let Type of types">{{Type.type}}</option>
+                    <!-- <option value="Fruit">Fruit</option> -->
                   </select>  
                 </div>  
                 <div class="row mb-3">
                   <div class="form-group">
                     <label for="Description">Description du fruit ou légume</label>
-                    <textarea class="form-control" id="Description" rows="3" placeholder=""></textarea>
+                    <textarea class="form-control" id="Description" rows="3" placeholder=""
+                    name="description"
+                    [(ngModel)]="form.description"
+                    required
+                    #description="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && description.errors }"
+                    ></textarea>
                   </div>
                 </div>
               </div>
               <div class="row mb-3">
                 <div class="form-group col-12 col-md-6 ">
                   <label for="periodeNormal">Période normal</label>
-                  <input type="text" name="form.periodeNormal" class="form-control" id="form.periodeNormal" placeholder="">
+                  <input type="text" name="form.periodeNormal" class="form-control" id="form.periodeNormal" placeholder=""
+                  name="periodeNormal"
+                  [(ngModel)]="form.periodeNormal"
+                  required
+                  #periodeNormal="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && periodeNormal.errors }"
+                  >
                 </div>
                 <div class="form-group col-12 col-md-6 ">
                   <label for="LangueMajoritairementParlée">Arrosage</label>
-                  <input type="text" class="form-control" id="inputLangueMajoritairementParlée" placeholder="">
+                  <input type="text" class="form-control" name="" id="inputLangueMajoritairementParlée" placeholder=""
+                  name="arrosage"
+                  [(ngModel)]="form.arrosage"
+                  required
+                  #arrosage="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && arrosage.errors }"
+                  >
                 </div>  
               </div>
               <div class="row mb-3">
                 <div class="form-group col-12 col-md-6 mb-3">
                   <label for="ChiffresPopulation">Récolte</label>
-                  <input type="text" class="form-control" id="inputChiffresPopulation" placeholder="">
+                  <input type="text" class="form-control" id="inputChiffresPopulation" placeholder=""
+                  name="dureeFloraisaon"
+                  [(ngModel)]="form.dureeFloraisaon"
+                  required
+                  #dureeFloraisaon="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && dureeFloraisaon.errors }"
+                  >
                 </div>
                 <div class="form-group col-12 col-md-6 mb-3">
                   <label for="ChiffresPopulation">Titre du tutoriel</label>
-                  <input type="text" class="form-control" id="inputChiffresPopulation" placeholder="">
+                  <input type="text" class="form-control" id="inputChiffresPopulation" placeholder=""
+                  name="titre"
+                  [(ngModel)]="form.titre"
+                  required
+                  #titre="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && titre.errors }"
+                  >
                 </div>
                 <div class="row mb-3">
                   <div class="form-group">
                     <label for="Description">Description du tutoriel</label>
-                    <textarea class="form-control" id="Description" rows="3" placeholder=""></textarea>
+                    <textarea class="form-control" id="Description" rows="3" placeholder=""
+                    name="descriptiont"
+                    [(ngModel)]="form.descriptiont"
+                    required
+                    #descriptiont="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && descriptiont.errors }"
+                    ></textarea>
                   </div>
                 </div>
               </div>
               <div class="row mb-3">
-              <div class="form-group col-12 col-md-6 mb-3">
+              <div class="form-group col-12 col-md-12 mb-3">
                 <label for="ChiffresPopulation">Photo</label>
-                <input type="file" (change)="filechange($event)" class="form-control" id="inputChiffresPopulation" placeholder="">
+                <input type="file" (change)="filechange($event)" class="form-control" id="inputChiffresPopulation" placeholder=""
+               
+                >
               </div>
               <!-- <div class="form-group col-12 col-md-6 mb-3">
                 <label for="ChiffresPopulation">Vidéo</label>
@@ -88,40 +126,73 @@
               <div class="row mb-3">
                 <div class="form-group col-12 col-md-6 ">
                   <label for="ChiffresPopulation">Etat de la terre</label>
-                  <input type="text" class="form-control" id="inputChiffresPopulation" placeholder="">
+                  <input type="text" class="form-control" id="inputChiffresPopulation" placeholder=""
+                  name="etatDeLaTerre"
+                  [(ngModel)]="form.etatDeLaTerre"
+                  required
+                  #etatDeLaTerre="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && etatDeLaTerre.errors }"
+                  >
                 </div>
                 <div class="form-group col-12 col-md-6 mb-3">
                   <label for="Superficie">Espacement entre graine</label>
-                  <input type="text" class="form-control" id="inputSuperficie" placeholder="">
+                  <input type="text" class="form-control" id="inputSuperficie" placeholder=""
+                  name="espacementEntreGraine"
+                  [(ngModel)]="form.espacementEntreGraine"
+                  required
+                  #espacementEntreGraine="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && espacementEntreGraine.errors }"
+                  >
                 </div>  
               </div>
               <div class="row mb-3">
                 <div class="form-group col-12 col-md-6 mb-3">
+                  <label for="Superficie">Sémis</label>
+                  <input type="text" class="form-control" id="inputSuperficie" placeholder=""
+                  name="semis"
+                  [(ngModel)]="form.semis"
+                  required
+                  #semis="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && semis.errors }"
+                  >
+                </div> 
+                <!-- <div class="form-group col-12 col-md-6 mb-3">
                   <label for="NomPays">Sémis</label>
                   <select name="pets" id="pet-select" class="form-control">
                     <option value="">choisir </option>
                     <option value="dog">Oui</option>
                     <option value="cat">Non</option>
                   </select>  
-                </div>  
+                </div>   -->
                 <div class="form-group col-12 col-md-6 mb-3">
+                  <label for="Superficie">
+                    Bouture</label>
+                  <input type="text" class="form-control" id="inputSuperficie" placeholder=""
+                  name="bouture"
+                  [(ngModel)]="form.bouture"
+                  required
+                  #bouture="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && bouture.errors }"
+                  >
+                </div> 
+                <!-- <div class="form-group col-12 col-md-6 mb-3">
                   <label for="NomPays">Bouture</label>
                   <select name="pets" id="pet-select" class="form-control">
                     <option value="">choisir </option>
                     <option value="dog">Oui</option>
                     <option value="cat">Nom</option>
                   </select>  
-                </div>  
+                </div>   -->
                 
                 </div>
               <button type="submit" class="btn btn-primary mb-2 connexion text-white align-items-center">Valider</button>
-              <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-                tutoriel non Ajouter!<br />{{ errorMessage }}
+              <div class="alert alert-warning" *ngIf="f.submitted && isSuccessful">
+                Tutoriel ajouter avec succès!<br />{{ errorMessage }}
               </div>
             </fieldset>
           </form>
-          <div class="alert alert-success" *ngIf="isSuccessful">
-            Tutoriel ajouter avec succès!
+          <div class="alert alert-success" *ngIf="isSignUpFailed">
+            tutoriel non Ajouter!
           </div>
         </div>
       </div>

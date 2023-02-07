@@ -7,6 +7,11 @@ import { LegumeFruitService } from '../_services/legume-fruit.service';
   styleUrls: ['./ajouter-legume-fruit.component.scss']
 })
 export class AjouterLegumeFruitComponent {
+  // semis: any;
+  // bouture: any;
+  id: any
+  types: any
+
   form: any = {
     nom: null,
     description: null,
@@ -18,8 +23,9 @@ export class AjouterLegumeFruitComponent {
     descriptiont: null,
     etatDeLaTerre: null,
     espacementEntreGraine: null,
-    semis: null,
-    bouture: null
+    semis:  null,
+    bouture: null,
+    // type : null
   };
   file: any
   isSuccessful = false;
@@ -29,10 +35,19 @@ export class AjouterLegumeFruitComponent {
   constructor(private legumeFruitService: LegumeFruitService) { }
 
   ngOnInit() {
+    this.legumeFruitService.GetTypeLegumeFruit().subscribe(data=>{
+      this.types = data;
+      console.log(this.types)
+     })
+  
   }
-
+  filechange(event: any) {
+    this.file = event.target['files'][0];
+    console.log(event)
+  }
   onSubmit(): void {
-    const { nom,
+    const { 
+      nom,
       description,
       arrosage,
       periodeNormal,
@@ -42,8 +57,11 @@ export class AjouterLegumeFruitComponent {
       etatDeLaTerre,
       espacementEntreGraine,
       semis,
-      bouture } = this.form;
-    this.legumeFruitService.AjoutLegumeFruit(nom,
+      bouture,
+      type,
+    } = this.form;
+    console.log(type)
+    this.legumeFruitService.PostLegumeFruit(nom,
       description,
       arrosage,
       periodeNormal,
@@ -54,7 +72,8 @@ export class AjouterLegumeFruitComponent {
       etatDeLaTerre,
       espacementEntreGraine,
       semis,
-      bouture).subscribe({
+      bouture,
+      type).subscribe({
         next: data => {
           console.log(data);
           this.isSuccessful = true;
@@ -68,8 +87,5 @@ export class AjouterLegumeFruitComponent {
   }
 
 
-  filechange(event: any) {
-    this.file = event.target.files[0];
-    console.log(event)
-  }
+
 }

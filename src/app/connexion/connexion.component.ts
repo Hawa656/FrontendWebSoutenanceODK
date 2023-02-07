@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
 import { StorageService } from '../_services/storage.service';
 
@@ -17,12 +18,19 @@ export class ConnexionComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
-  constructor(private authService: AuthService, private storageService: StorageService) { }
+  constructor(private authService: AuthService, private storageService: StorageService,private route : Router) { }
 
   ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
       this.roles = this.storageService.getUser().roles;
+      
+
+       
+      // POUR REDIRIGER VERS LA PAGE D4ACCUEIL UNE FOIS CONNECTE
+      if(this.roles[0]=="ROLE_ADMIN"){
+        this.route.navigate(['/home'])
+      }
     }
   }
 

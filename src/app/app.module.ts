@@ -20,6 +20,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AjouterLegumeFruitComponent } from './ajouter-legume-fruit/ajouter-legume-fruit.component';
 import { FormsModule } from '@angular/forms';
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
+import { VideosComponent } from './videos/videos.component';
 
 
 
@@ -34,6 +35,7 @@ import { httpInterceptorProviders } from './_helpers/http.interceptor';
     ConnexionComponent,
     FooterComponent,
     AjouterLegumeFruitComponent,
+    VideosComponent,
   ],
   imports: [
     BrowserModule,
