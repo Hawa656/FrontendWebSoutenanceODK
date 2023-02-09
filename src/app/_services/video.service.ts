@@ -16,11 +16,11 @@ export class VideoService {
 
   constructor(private http: HttpClient) { } 
     // ====================AJOUTER UNE VIDEO===============
-  AjoutVideo(file: File, videorecu: string, idLegumeFruit:number, iduser:number): Observable<any>{
+  AjoutVideo(file: File, videorecu: any, idLegumeFruit:number, iduser:number): Observable<any>{
 
     let data = new FormData();
     data.append("file",file);
-    data.append("videorecu",videorecu);
+    data.append("videorecu", JSON.stringify(videorecu).slice(1,JSON.stringify(videorecu).lastIndexOf(']')));
 
     console.log('le file est ', file)
     console.log('le titre est ', videorecu)

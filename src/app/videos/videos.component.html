@@ -1,61 +1,41 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter une vidéo</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
 
 
-          <form action=""
-          *ngIf="!isSuccessful"
-          name="form"
-          (ngSubmit)="f.form.valid && onSubmit()"
-          #f="ngForm"
-          novalidate
-          >
-            <div class="col-12 col-md-12">
-              <div class="mb-3">
-                  <label for="exampleInputPseudo" class="form-label">Titre de la vidéo</label>
-                  <input  id="exampleInputTitre"
-                  type="text"
-                  class="form-control"
-                  name="videorecu"
-                  [(ngModel)]="form.videorecu"
-                  required
-                  #videorecu="ngModel"
-                  [ngClass]="{ 'is-invalid': f.submitted && videorecu.errors }"
-                  >
-                  <div *ngIf="videorecu.errors && f.submitted" class="invalid-feedback">
-                      Ce champ est obligatoire!
-                    </div>
+        <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+          <div class="col-12 col-md-12">
+            <div class="mb-3">
+              <label for="exampleInputPseudo" class="form-label">Titre de la vidéo</label>
+              <input id="exampleInputTitre" type="text" class="form-control" name="videorecu"
+                [(ngModel)]="form.videorecu" required #videorecu="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && videorecu.errors }">
+              <div *ngIf="videorecu.errors && f.submitted" class="invalid-feedback">
+                Ce champ est obligatoire!
               </div>
+            </div>
           </div>
           <div class="col-12 col-md-12">
-              <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Vidéo</label>
-                  <input  id="exampleInputFile"
-                  (change)="filechange($event)"
-                  type="file"
-                  class="form-control"
-                  name="file"
-                  [(ngModel)]="form.file"
-                  required
-                
-                  #file="ngModel"
-                  [ngClass]="{ 'is-invalid': f.submitted && file.errors }"
-                  >
-                  <div *ngIf="file.errors && f.submitted" class="invalid-feedback">
-                    Ce champ est obligatoire!
-                  </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Vidéo</label>
+              <input id="exampleInputFile" (change)="filechange($event)" type="file" class="form-control" name="file"
+                [(ngModel)]="form.file" required #file="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && file.errors }">
+              <div *ngIf="file.errors && f.submitted" class="invalid-feedback">
+                Ce champ est obligatoire!
               </div>
+            </div>
           </div>
 
           <!-- <div class="col-12 col-md-12">
@@ -78,28 +58,30 @@
             </div>
         </div> -->
 
-        <div class="form-group col-12 col-md-6 mb-3">
-          <label for="legumeFruit">Legume ou fruit</label>
-          <select name="legumeFruit.id"  [(ngModel)]="form.legumeFruit" id="pet-select" class="form-control" >
-            <option>selectionner le legume ou fruit concerné<option>
-            <option value="{{LegumeFruit.id}}" *ngFor="let LegumeFruit of legumeFruit" >{{LegumeFruit.nom}}</option>
-            <!-- <option value="Fruit">Fruit</option> -->
-          </select>  
-        </div>  
+          <div class="form-group col-12 col-md-6 mb-3">
+            <label for="legumeFruit">Selectionner le legume ou fruit concerné</label>
+            <select name="legumeFruit.id" [(ngModel)]="form.legumeFruit" id="pet-select" class="form-control">
+              <!-- <option>selectionner le legume ou fruit concerné<option> -->
+              <option value="{{LegumeFruit.id}}" *ngFor="let LegumeFruit of legumeFruit">{{LegumeFruit.nom}}</option>
+              <!-- <option value="Fruit">Fruit</option> -->
+            </select>
+          </div>
 
-        <button type="submit" class="btn btn-primary mb-2 connexion text-white align-items-center">Valider</button>
-        <div class="alert alert-warning" *ngIf="f.submitted && isSuccessful">
-          video non Ajouter!
-        </div>
+          <button type="submit" class="btn btn-primary mb-2 connexion text-white align-items-center">Valider</button>
+          <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+            Vidéo ajouter avec succès
+          </div>
+          <div class="alert alert-success" *ngIf="f.submitted && isSuccessful">
+            video non Ajouter!
+          </div>
+        </form>
+        
 
-          </form>
-
-
-        </div>
-        <!-- <div class="modal-footer">
+      </div>
+      <!-- <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary">Save changes</button>
         </div> -->
-      </div>
     </div>
   </div>
+</div>

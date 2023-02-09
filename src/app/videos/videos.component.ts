@@ -50,8 +50,11 @@ export class VideosComponent {
       legumeFruit,
     } = this.form;
     console.log(legumeFruit)
+    var video=    [{"titre":videorecu}]
 
-    this.videoService.AjoutVideo(this.file,videorecu, legumeFruit, this.User.id ).subscribe({
+
+    console.log(this.form)
+    this.videoService.AjoutVideo(this.file,video, legumeFruit, this.User.id ).subscribe({
       next: data => {
         console.log(data);
         this.isSuccessful = true;
