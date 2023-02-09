@@ -1,6 +1,18 @@
+<mat-drawer-container>
+  <mat-drawer >
+    <!-- <mat-drawer mode="side" opened="true"> -->
+    <app-sidenav></app-sidenav>
+  </mat-drawer>
+  <mat-drawer-content>
+    
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+
 <div class="row">
     <div class=" image  text-white text-center text marge">
-        <h1 class="fw-bolder ">Tableau de bord de l’administrateur</h1>
+        <h1 class="fw-bolder text">Tableau de bord de l’administrateur</h1>
         <p class="p">Bienvenue Hawa, ayez totalement la main sur vos informations</p>
     </div>
 </div>
@@ -88,7 +100,7 @@
 
  <!-- <div class=" container-fluid bg-white  marge  "> -->
         <div class="row  text-white fw-bold">
-            <div class="col-5 text-center mr-0" style="background: #D9D9D9;">
+            <div class="col-12 col-md-5 text-center mr-0" style="background: #D9D9D9;">
                 <div class="row rpadding">
                     <div class="col-5 paddind" style="background: #999090;">
                         <img src="../../assets/Vector.png" alt="" class="mb-4">
@@ -106,7 +118,7 @@
 
             <div class="col-1"></div>
 
-            <div class="col-5 text-center ml-0" style="background: #D9D9D9;">
+            <div class="col-12 col-md-5 text-center ml-0" style="background: #D9D9D9;">
                 <div class="row rpadding">
                     <div class="col-5 paddind" style="background: #999090;">
                         <img src="../../assets/Vector (1).png" alt="" class="mb-4">

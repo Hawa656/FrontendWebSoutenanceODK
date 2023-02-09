@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LegumeFruitService } from '../_services/legume-fruit.service';
+import { StorageService } from '../_services/storage.service';
 
 @Component({
   selector: 'app-ajouter-legume-fruit',
@@ -9,8 +10,11 @@ import { LegumeFruitService } from '../_services/legume-fruit.service';
 export class AjouterLegumeFruitComponent {
   // semis: any;
   // bouture: any;
-  id: any
+
   types: any
+  roles: string[] = [];
+
+  User : any
 
   form: any = {
     nom: null,
@@ -32,13 +36,15 @@ export class AjouterLegumeFruitComponent {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private legumeFruitService: LegumeFruitService) { }
+  constructor(private legumeFruitService: LegumeFruitService,  private storageService: StorageService) { }
 
   ngOnInit() {
     this.legumeFruitService.GetTypeLegumeFruit().subscribe(data=>{
       this.types = data;
       console.log(this.types)
      })
+
+     this.User = this.storageService.getUser();
   
   }
   filechange(event: any) {
@@ -73,7 +79,7 @@ export class AjouterLegumeFruitComponent {
       espacementEntreGraine,
       semis,
       bouture,
-      type).subscribe({
+      type, this.User.id).subscribe({
         next: data => {
           console.log(data);
           this.isSuccessful = true;

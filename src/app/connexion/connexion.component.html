@@ -87,13 +87,14 @@
     
                                     <div class="form-group">
                                         <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger" role="alert">
-                                          Login failed: {{ errorMessage }}
+                                          <!-- Login failed: {{ errorMessage }} -->
+                                          identifiant ou mot de passe incorrect
                                         </div>
                                       </div>
                                 </form>
                                 
                                 <div class="alert alert-success" *ngIf="isLoggedIn">
-                                    Logged in as {{ roles }}.
+                                    <!-- console.logLogged in as {{ roles }}. -->
                                     <button (click)="logout()"></button>
                                   </div>
                                 

@@ -13,6 +13,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class LegumeFruitService {
+  //api1 = 'http://localhost:8080/api/legumefruit/';
   api = 'http://localhost:8080/api/TypeLegumeFruit';
 
   constructor(private http: HttpClient) { }
@@ -42,9 +43,17 @@ export class LegumeFruitService {
   GetTypeLegumeFruit():Observable<any>{
     return this.http.get(`${this.api}/lireTypeLegumeFruit`);
   }
+
+   //AFFICHAGE LEGUMEFRUIT
+   GetLegumeFruit():Observable<any>{
+    return this.http.get<any>( 
+      AUTH_API + 'lireLegumesFruits'
+      )
+   
+  }
   
 
-  PostLegumeFruit(nom: string, description: string, arrosage: string, periodeNormal: string, dureeFloraisaon: string, file: File, titre: string, descriptiont: string, etatDeLaTerre: string, espacementEntreGraine: string, semis: string ,bouture: string, type:string):Observable<any> {
+  PostLegumeFruit(nom: string, description: string, arrosage: string, periodeNormal: string, dureeFloraisaon: string, file: File, titre: string, descriptiont: string, etatDeLaTerre: string, espacementEntreGraine: string, semis: string ,bouture: string, type:string, iduser:number):Observable<any> {
     let data = new FormData();
     data.append("nom",nom);
     data.append("description",description);
@@ -73,7 +82,7 @@ export class LegumeFruitService {
     console.log('le semis est ', semis)
     console.log('le bouture est ', bouture)
     return this.http.post<any>( 
-      AUTH_API + 'Ajouterajoutfruilegume/' + `${type}`, data
+      AUTH_API + 'Ajouterajoutfruilegume/' + `${type}/` + `${iduser}`, data
       )
   }
 }

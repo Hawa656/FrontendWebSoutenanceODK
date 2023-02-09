@@ -31,6 +31,7 @@ export class ConnexionComponent implements OnInit {
       if(this.roles[0]=="ROLE_ADMIN"){
         this.route.navigate(['/home'])
       }
+      
     }
   }
 

@@ -21,6 +21,9 @@ import { AjouterLegumeFruitComponent } from './ajouter-legume-fruit/ajouter-legu
 import { FormsModule } from '@angular/forms';
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
 import { VideosComponent } from './videos/videos.component';
+import { FruitsComponent } from './fruits/fruits.component';
+import { LegumesComponent } from './legumes/legumes.component';
+import { LegumeFruitFruitComponent } from './legume-fruit-fruit/legume-fruit-fruit.component';
 
 
 
@@ -36,6 +39,9 @@ import { VideosComponent } from './videos/videos.component';
     FooterComponent,
     AjouterLegumeFruitComponent,
     VideosComponent,
+    FruitsComponent,
+    LegumesComponent,
+    LegumeFruitFruitComponent,
   ],
   imports: [
     BrowserModule,

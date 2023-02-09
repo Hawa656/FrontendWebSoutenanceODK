@@ -12,12 +12,94 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+
+
+          <form action=""
+          *ngIf="!isSuccessful"
+          name="form"
+          (ngSubmit)="f.form.valid && onSubmit()"
+          #f="ngForm"
+          novalidate
+          >
+            <div class="col-12 col-md-12">
+              <div class="mb-3">
+                  <label for="exampleInputPseudo" class="form-label">Titre de la vidéo</label>
+                  <input  id="exampleInputTitre"
+                  type="text"
+                  class="form-control"
+                  name="videorecu"
+                  [(ngModel)]="form.videorecu"
+                  required
+                  #videorecu="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && videorecu.errors }"
+                  >
+                  <div *ngIf="videorecu.errors && f.submitted" class="invalid-feedback">
+                      Ce champ est obligatoire!
+                    </div>
+              </div>
+          </div>
+          <div class="col-12 col-md-12">
+              <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Vidéo</label>
+                  <input  id="exampleInputFile"
+                  (change)="filechange($event)"
+                  type="file"
+                  class="form-control"
+                  name="file"
+                  [(ngModel)]="form.file"
+                  required
+                
+                  #file="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && file.errors }"
+                  >
+                  <div *ngIf="file.errors && f.submitted" class="invalid-feedback">
+                    Ce champ est obligatoire!
+                  </div>
+              </div>
+          </div>
+
+          <!-- <div class="col-12 col-md-12">
+            <div class="mb-3">
+                
+              <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+                <div id="myDropdown" class="dropdown-content">
+                  <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                  <a href="#about">About</a>
+                  <a href="#base">Base</a>
+                  <a href="#blog">Blog</a>
+                  <a href="#contact">Contact</a>
+                  <a href="#custom">Custom</a>
+                  <a href="#support">Support</a>
+                  <a href="#tools">Tools</a>
+                </div>
+              </div>
+
+            </div>
+        </div> -->
+
+        <div class="form-group col-12 col-md-6 mb-3">
+          <label for="legumeFruit">Legume ou fruit</label>
+          <select name="legumeFruit.id"  [(ngModel)]="form.legumeFruit" id="pet-select" class="form-control" >
+            <option>selectionner le legume ou fruit concerné<option>
+            <option value="{{LegumeFruit.id}}" *ngFor="let LegumeFruit of legumeFruit" >{{LegumeFruit.nom}}</option>
+            <!-- <option value="Fruit">Fruit</option> -->
+          </select>  
+        </div>  
+
+        <button type="submit" class="btn btn-primary mb-2 connexion text-white align-items-center">Valider</button>
+        <div class="alert alert-warning" *ngIf="f.submitted && isSuccessful">
+          video non Ajouter!
         </div>
-        <div class="modal-footer">
+
+          </form>
+
+
+        </div>
+        <!-- <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
