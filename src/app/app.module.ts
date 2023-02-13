@@ -24,6 +24,7 @@ import { VideosComponent } from './videos/videos.component';
 import { FruitsComponent } from './fruits/fruits.component';
 import { LegumesComponent } from './legumes/legumes.component';
 import { LegumeFruitFruitComponent } from './legume-fruit-fruit/legume-fruit-fruit.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
@@ -55,7 +56,8 @@ import { LegumeFruitFruitComponent } from './legume-fruit-fruit/legume-fruit-fru
     MatDividerModule,
     MatListModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -28,7 +28,10 @@ export class AuthService {
     );
   }
 
-  logout(): Observable<any> {
-    return this.http.post(AUTH_API + 'signout', { }, httpOptions);
+   //Deconnexion
+   logout(): Observable<any> {
+    const req = new HttpRequest('POST', AUTH_API + 'signout', {}, httpOptions);
+    return this.http.request(req);
+
   }
 }

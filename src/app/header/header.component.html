@@ -1,5 +1,6 @@
+
 <mat-toolbar >
-    <mat-toolbar-row class="justify-content-between bg-dark opacity-100">
+    <mat-toolbar-row class="justify-content-between ">
       <button mat-icon-button (click)="toggleSidebar()">
         <mat-icon>menu</mat-icon>
       </button>
@@ -29,7 +30,7 @@
               >
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item>
+              <button mat-menu-item (click)="deconnexion()">
                 <mat-icon>exit_to_app</mat-icon>
                 Logout
               </button>

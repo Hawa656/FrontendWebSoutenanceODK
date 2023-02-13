@@ -24,11 +24,13 @@ export class AjouterLegumeFruitComponent {
     dureeFloraisaon: null,
 
     titre: null,
-    descriptiont: null,
+    etape1: null,
+    etape2: null,
+    etape3: null,
+    etape4: null,
     etatDeLaTerre: null,
     espacementEntreGraine: null,
-    semis:  null,
-    bouture: null,
+    
     // type : null
   };
   file: any
@@ -59,7 +61,10 @@ export class AjouterLegumeFruitComponent {
       periodeNormal,
       dureeFloraisaon,
       titre,
-      descriptiont,
+      etape1,
+      etape2,
+      etape3,
+      etape4,
       etatDeLaTerre,
       espacementEntreGraine,
       semis,
@@ -74,11 +79,12 @@ export class AjouterLegumeFruitComponent {
       dureeFloraisaon,
       this.file,
       titre,
-      descriptiont,
+      etape1,
+      etape2,
+      etape3,
+      etape4,
       etatDeLaTerre,
       espacementEntreGraine,
-      semis,
-      bouture,
       type, this.User.id).subscribe({
         next: data => {
           console.log(data);

@@ -21,12 +21,10 @@ export class ConnexionComponent implements OnInit {
   constructor(private authService: AuthService, private storageService: StorageService,private route : Router) { }
 
   ngOnInit(): void {
+  
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
-      this.roles = this.storageService.getUser().roles;
-      
-
-       
+      this.roles = this.storageService.getUser().roles;       
       // POUR REDIRIGER VERS LA PAGE D4ACCUEIL UNE FOIS CONNECTE
       if(this.roles[0]=="ROLE_ADMIN"){
         this.route.navigate(['/home'])
@@ -37,11 +35,9 @@ export class ConnexionComponent implements OnInit {
 
   onSubmit(): void {
     const { numeroOrEmail, password } = this.form;
-
     this.authService.login(numeroOrEmail, password).subscribe({
       next: data => {
         this.storageService.saveUser(data);
-
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
@@ -54,18 +50,19 @@ export class ConnexionComponent implements OnInit {
     });
   }
 
+  
   logout(): void {
     this.authService.logout().subscribe({
       next: res => {
         console.log(res);
         this.storageService.clean();
-
         window.location.reload();
       },
       error: err => {
         console.log(err);
       }
     });
+    
   }
 
   reloadPage(): void {

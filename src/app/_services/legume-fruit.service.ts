@@ -15,8 +15,40 @@ const httpOptions = {
 export class LegumeFruitService {
   //api1 = 'http://localhost:8080/api/legumefruit/';
   api = 'http://localhost:8080/api/TypeLegumeFruit';
+  apiSupprimer = 'http://localhost:8080/api/legumefruit';
+
+  api1= "http://localhost:8080/api/legumefruit";
+  api2= "http://localhost:8080/api/video";
 
   constructor(private http: HttpClient) { }
+
+  //AFFICHAGE DES LEGUMES 
+  getLegume():Observable<any>{
+    return this.http.get(`${this.api1}/lireLegumes`);
+  }
+
+  //AFFICHAGE DES FRUITS
+  getFruit():Observable<any>{
+    return this.http.get(`${this.api1}/lireFruits`)
+  }
+
+  //AFFICHE (la video de la page legumeFruit) LES INFO SUR LEGUMESFRUITS, VIDEO ,TUTORIELS
+  getTousLesInfoSurUnLegumeFruit(idLegumesFruits:any):Observable<any>{
+    return this.http.get(`${this.api2}/videoparIdLegumeFruit/${idLegumesFruits}`);
+  }
+
+
+   //RECUPERATION DE L'ID DU LEGUMES 
+   recupererIdLegumeFruit(id:number):Observable<any>{
+    return this.http.get(`${this.api1}/RecupererIdLegumeFruit/${id}`);
+  }
+
+
+  
+   //SUPPRIMER LEGUME OU FRUIT ET LE TUTORIEL ASSOCIE
+   supprimerLegumesFruits(id:number):Observable<any>{
+    return this.http.delete(`${this.apiSupprimer}/supprimerlegumesFruits/${id}`);
+  }
 
 // AjoutLegumeFruit(nom: string, description: string, arrosage: string, periodeNormal: string, dureeFloraisaon: string, file: File, titre: string, descriptiont: string, etatDeLaTerre: string, espacementEntreGraine: string, semis: boolean,bouture: boolean): Observable<any> {
 //     return this.http.post(
@@ -53,7 +85,7 @@ export class LegumeFruitService {
   }
   
 
-  PostLegumeFruit(nom: string, description: string, arrosage: string, periodeNormal: string, dureeFloraisaon: string, file: File, titre: string, descriptiont: string, etatDeLaTerre: string, espacementEntreGraine: string, semis: string ,bouture: string, type:string, iduser:number):Observable<any> {
+  PostLegumeFruit(nom: string, description: string, arrosage: string, periodeNormal: string, dureeFloraisaon: string, file: File, titre: string, etape1: string,etape2: string,etape3: string,etape4: string, etatDeLaTerre: string, espacementEntreGraine: string, type:string, iduser:number):Observable<any> {
     let data = new FormData();
     data.append("nom",nom);
     data.append("description",description);
@@ -62,11 +94,13 @@ export class LegumeFruitService {
     data.append("dureeFloraisaon",dureeFloraisaon);
     data.append("file",file);
     data.append("titre",titre);
-    data.append("descriptiont",descriptiont);
+    data.append("etape1",etape1);
+    data.append("etape2",etape2);
+    data.append("etape3",etape3);
+    data.append("etape4",etape4);
     data.append("etatDeLaTerre",etatDeLaTerre);
     data.append("espacementEntreGraine",espacementEntreGraine);
-    data.append("semis",semis);
-    data.append("bouture",bouture);
+    
     // data.append("type",type);
 
     console.log('le nom est ', nom)
@@ -76,11 +110,11 @@ export class LegumeFruitService {
     console.log('le dureeFloraisaon est ', dureeFloraisaon)
     console.log('le file est ', file)
     console.log('le titre est ', titre)
-    console.log('le descriptiont est ', descriptiont)
+    console.log('le etapae1 est ', etape1)
     console.log('le etatDeLaTerre est ', etatDeLaTerre)
     console.log('le espacementEntreGraine est ', espacementEntreGraine)
-    console.log('le semis est ', semis)
-    console.log('le bouture est ', bouture)
+    console.log('le semis est ', etape2)
+    console.log('le bouture est ', etape3)
     return this.http.post<any>( 
       AUTH_API + 'Ajouterajoutfruilegume/' + `${type}/` + `${iduser}`, data
       )

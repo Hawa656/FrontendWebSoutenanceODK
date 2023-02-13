@@ -4,6 +4,10 @@ mat-toolbar {
     z-index: 100;
   }
   
+  mat-toolbar-row{
+    background: rgba(37, 80, 63, 0.5);
+  }
+
   ul {
     li {
       list-style: none;
