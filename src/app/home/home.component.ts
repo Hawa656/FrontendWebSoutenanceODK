@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HomeService } from '../_services/home.service'; 
+import { HomeService } from '../_services/home.service';
 import { Video } from '../Video';
+import { LegumeFruitService } from '../_services/legume-fruit.service';
 
 @Component({
   selector: 'app-home',
@@ -9,49 +10,48 @@ import { Video } from '../Video';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-   videoCount!: Video[];
-   videoList: any
+  fruit:any
+  mesVideos:any;
+  legume:any
+  tuto:any
 
-  constructor(private homeService :HomeService,private httpClient: HttpClient) { }
-  
+  constructor(private homeService: HomeService,private legumeFruitService:LegumeFruitService, private httpClient: HttpClient) { }
+
   ngOnInit() {
+    this.getvideolist()
+    this.getNbreFruit()
+    this.getNbreLegume()
+    this.getNbreTutoriel()
+  }
 
+  getvideolist() {
+    this.homeService.getListVideo().subscribe(data => {
 
-    // // Lister les Regions;
-    // this.httpClient.get('http://localhost:8080/api/video/lireVideo').subscribe(
-    //   // La prémière méthode si ça marche
-    //   (videoList:any) => {
-    //     console.log('------------- Liste Video -------', videoList)
-    //     this.videoList = videoList
-    //   })
-    
-    // this.getvideolist()
-    // this.httpClient.get
-    //AFFICHER LES Videos
-  //   this.homeService.getListVideo().subscribe(data=>{
-  //    this.videoCount = data;
-     
-  //  })
-   
- }
-   
- getvideolist() {
-  this.homeService.getListVideo().subscribe(count => {
-    this.videoCount = count;
-    console.log('sdfghjkljhgfdsfghjkl'+this.videoCount)
-    
-  });
-}
+      this.mesVideos = data
+    });
+  }
 
+  getNbreFruit(){
+    this.legumeFruitService.getFruit().subscribe(data => {
 
+      this.fruit = data
+    });
+  }
 
+  getNbreLegume(){
+    this.legumeFruitService.getLegume().subscribe(data => {
 
-  // getVideoCount() {
-  //   this.homeService.countVideos().subscribe(count => {
-  //     this.videoCount = count;
-  //     console.log("dfghjklkjhgfdghjkljhgf"+ this.getVideoCount)
-  //   });
-  // }
+      this.legume = data
+    });
+  }
+
+  getNbreTutoriel(){
+    this.homeService.getListTutoriel().subscribe(data => {
+
+      this.tuto = data
+    });
+  }
+
 
 
 }

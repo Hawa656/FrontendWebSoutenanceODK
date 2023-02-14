@@ -25,6 +25,7 @@ import { FruitsComponent } from './fruits/fruits.component';
 import { LegumesComponent } from './legumes/legumes.component';
 import { LegumeFruitFruitComponent } from './legume-fruit-fruit/legume-fruit-fruit.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ConseilsComponent } from './conseils/conseils.component';
 
 
 
@@ -43,6 +44,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     FruitsComponent,
     LegumesComponent,
     LegumeFruitFruitComponent,
+    ConseilsComponent,
   ],
   imports: [
     BrowserModule,

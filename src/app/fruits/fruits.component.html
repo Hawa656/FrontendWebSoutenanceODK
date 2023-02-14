@@ -1,1 +1,100 @@
-<p>fruits works!</p>
+<div class="container mt-2">
+    <div class="img mb-3 containerImg">
+      <h1 class="text1">Fruits</h1>
+    </div>
+  </div>
+  
+  <div class="container py-3">
+    <div class="row">
+      <div class="col-9 ">
+        <div class="input-group">
+          <input [(ngModel)]="searchText" type="search" class="form-control rounded" placeholder="Search"
+            aria-label="Search" aria-describedby="search-addon" />
+          <button type="button" class="btn btn-outline-primary">Rechercher</button>
+        </div>
+      </div>
+      <div class="col-3">
+        <button routerLink="/ajouter-legume-fruit" type="button" class="btn "
+          style="width: 100%;background: #399C28; color: white;">Ajouter un tutoriel</button>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  <!-- =============================================================================================== -->
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-4" *ngFor="let Fruit of fruit| filter:searchText">
+        <div class="card mb-3">
+          <img src="{{Fruit.photo}}" alt="Image fruit" class="card-img-top">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6 col-md-7">
+                <div>
+                  <h2 class="h3 card-title ">{{Fruit.nom}}</h2>
+                </div>
+              </div>
+              <div class="col-6 col-md-5">
+                <div class="iconss align-items-center justify-content-center">
+                  <div class="d-flex">
+                    <i class="bi bi-pencil-square"></i>
+                    <i class="bi bi-eye"></i>
+                    <span type="button" class="adpd" data-bs-toggle="modal" data-bs-target="#supprimer"
+                    (click)="openModal(Fruit.nom, Fruit.id)"><i class="bi bi-trash" ></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- <div class="filtreSearchBar row ">
+      <div class="col-3">
+        <div class="filtre ">
+          <p>icon select</p>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+    </div> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

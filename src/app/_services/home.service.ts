@@ -23,5 +23,10 @@ export class HomeService {
    getListVideo() : Observable<Video[]>{
     return this.httpClient.get<Video[]>("http://localhost:8080/api/video/lireVideo");
   }
+
+  //AFFICHAGE DES TUTORIELS 
+  getListTutoriel() : Observable<Video[]>{
+    return this.httpClient.get<Video[]>("http://localhost:8080/api/tuto/lireTutoriel");
+  }
 }
 ''

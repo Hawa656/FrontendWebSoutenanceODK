@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="img  ">
+        <div class="text text-center mt-2">
+          <h1 class="text-white title ">Conseils </h1>
+          <p class="p ">Recevez nos meilleurs conseils afin d’anticiper
+            les mauvaises surprises dans vos jardins. </p>
+        </div>
+      </div>
+</div>
+<div class="container py-3">
+    <div class="row">
+      <div class="col-9 ">
+        <div class="input-group">
+          <input [(ngModel)]="searchText" type="search" class="form-control rounded" placeholder="Search"
+            aria-label="Search" aria-describedby="search-addon" />
+          <button type="button" class="btn btn-outline-primary">Rechercher</button>
+        </div>
+      </div>
+      <div class="col-3">
+        <button routerLink="/ajouter-legume-fruit" type="button" class="btn "
+          style="width: 100%;background: #399C28; color: white;">Ajouter un Conseil</button>
+      </div>
+    </div>
+  </div>
+  <!-- =============Listes des conseils=============== -->
+  
+   
+   <div class="container">
+    <div class="row princ mb-3" *ngFor="let Conseil of conseil| filter:searchText" (click)="goToDetailConseils(Conseil.id)">
+        <div class="col-5 img2">
+          <img src="{{Conseil.photo}}" alt="image de conseil" width="100%"  style="padding: 0;" class=" image">
+        </div>
+        <div  class=" textLeft col-7" >
+          <h1 class="title2 mb-1">{{Conseil.titre}}</h1>
+          <p class="p2 ">{{Conseil.description | slice:0:100}}</p>
+          <!-- <a (click)="goToDetailConseils(Conseil.id)" class="mt-0">voir plus</a>  -->
+        </div>
+         </div>
+   </div>
+   

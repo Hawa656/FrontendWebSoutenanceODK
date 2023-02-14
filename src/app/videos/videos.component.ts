@@ -1,18 +1,28 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { LegumeFruitService } from '../_services/legume-fruit.service';
 import { StorageService } from '../_services/storage.service';
 import { VideoService } from '../_services/video.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-videos',
   templateUrl: './videos.component.html',
   styleUrls: ['./videos.component.scss']
 })
-export class VideosComponent {
+export class VideosComponent implements OnInit{
 
   legumeFruit: any
   roles: string[] = [];
-
+  video : any
+  qbq: any='fruit'
+  AOUA:any;
+  textFiltree:any
+  selectedOption: any;
+  // pour la barre de recherche:
+  searchText:any;
+  videoo: any;
+  videoer: any;
   User : any
 
   form: any = {
@@ -28,11 +38,7 @@ export class VideosComponent {
   constructor(private videoService: VideoService,  private storageService: StorageService, private legumeFruitService: LegumeFruitService) { }
  
   ngOnInit() {
-    this.legumeFruitService.GetLegumeFruit().subscribe(data=>{
-      this.legumeFruit = data;
-      console.log(this.legumeFruit)
-     })
-
+    this.touteLesVideo()
      this.User = this.storageService.getUser();
   
   }
@@ -67,7 +73,50 @@ export class VideosComponent {
     });
 }
 
+changement(){
+  console.log("ertyui"+this.textFiltree);
+  this.videoService.getFiltrerParFruitEtLegume(this.textFiltree).subscribe(data=>{
+    this.video = data;
+    console.log("filtre")
+    console.log(this.video)
+}
+  )
+}
 
+// =================SUPPRIMER====================
+openModal(nom : any, id : number) {
+  Swal.fire({
+    title: nom,
+    text: " Voulez-vous vraiment supprimer ce fruit ? ",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#399C28',
+    cancelButtonColor: '#d33',
+    cancelButtonText : "NON",
+    confirmButtonText: 'OUI'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      //suppp
+      this.legumeFruitService.supprimerLegumesFruits(id).subscribe(data => {
+        this.touteLesVideo()
+
+      console.log(id)
+      Swal.fire(
+        'Supprimer!',
+        'supprimé avec succès'
+      );
+    });
+
+    }
+  });
+}
+touteLesVideo(){
+  this.videoService.getVideo().subscribe(data=>{
+    this.video = data;
+    console.log(this.legumeFruit)
+   })
+
+}
 
 }
 
