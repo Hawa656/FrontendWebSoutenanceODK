@@ -62,7 +62,7 @@ export class ConnexionComponent implements OnInit {
         console.log(err);
       }
     });
-    
+    location.reload();
   }
 
   reloadPage(): void {

@@ -9,15 +9,15 @@
 </div>
 <div class="container py-3">
     <div class="row">
-      <div class="col-9 ">
+      <div class="col-12 col-md-9 ">
         <div class="input-group">
           <input [(ngModel)]="searchText" type="search" class="form-control rounded" placeholder="Search"
             aria-label="Search" aria-describedby="search-addon" />
-          <button type="button" class="btn btn-outline-primary">Rechercher</button>
+          <button type="button" class="btn btn-outline-primary" >Rechercher</button>
         </div>
       </div>
-      <div class="col-3">
-        <button routerLink="/ajouter-legume-fruit" type="button" class="btn "
+      <div class="col-12 col-md-3">
+        <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn "
           style="width: 100%;background: #399C28; color: white;">Ajouter un Conseil</button>
       </div>
     </div>
@@ -28,13 +28,99 @@
    <div class="container">
     <div class="row princ mb-3" *ngFor="let Conseil of conseil| filter:searchText" (click)="goToDetailConseils(Conseil.id)">
         <div class="col-5 img2">
-          <img src="{{Conseil.photo}}" alt="image de conseil" width="100%"  style="padding: 0;" class=" image">
+          <img src="{{Conseil.photo}}" alt="image de conseil" width="100%" height="100vh" style="padding: 0;" class=" image">
         </div>
-        <div  class=" textLeft col-7" >
+        <div  class=" textLeft col-7 " >
           <h1 class="title2 mb-1">{{Conseil.titre}}</h1>
-          <p class="p2 ">{{Conseil.description | slice:0:100}}</p>
+          <p class="p2 ">{{Conseil.description | slice:0:200}}</p>
+
+          <div class="row">
+            <div class="col-6"></div>
+
+            
+          <div class="col-6 col-md-5">
+            <div class="iconss align-items-center justify-content-center">
+              <div class="d-flex">
+                <span ><i class="bi bi-pencil-square"></i></span>
+                <i class="bi bi-eye"></i>
+                <span  type="button" class="adpd" data-bs-toggle="modal" data-bs-target="#supprimer"
+                (click)="openModal(Conseil.titre, Conseil.id)"><i class="bi bi-trash" ></i></span>
+              </div>
+            </div>
+          </div>
+          </div>
+
           <!-- <a (click)="goToDetailConseils(Conseil.id)" class="mt-0">voir plus</a>  -->
         </div>
          </div>
    </div>
    
+
+   <!-- =======================================MODAL====================================================== -->
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un conseil</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+  
+  
+          <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="col-12 col-md-12">
+              <div class="mb-3">
+                <label for="exampleInputPseudo" class="form-label">Titre du Conseil</label>
+                <input id="exampleInputTitre" type="text" class="form-control" name="videorecu"
+                  [(ngModel)]="form.titre" required #titre="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && titre.errors }">
+                <div *ngIf="titre.errors && f.submitted" class="invalid-feedback">
+                  Ce champ est obligatoire!
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-12">
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Description</label>
+                <input id="exampleInputFil"  type="text" class="form-control" name="file"
+                  [(ngModel)]="form.description" required #description="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && description.errors }">
+                <div *ngIf="description.errors && f.submitted" class="invalid-feedback">
+                  Ce champ est obligatoire!
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-12 col-md-12">
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Photo</label>
+                  <input id="exampleInputFile" (change)="filechange($event)" type="file" class="form-control" name="file"
+                    [(ngModel)]="form.file" required #file="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && file.errors }">
+                  <div *ngIf="file.errors && f.submitted" class="invalid-feedback">
+                    Ce champ est obligatoire!
+                  </div>
+                </div>
+              </div>
+            
+            
+  
+            <button type="submit" class="btn btn-primary mb-2 connexion text-white align-items-center">Valider</button>
+            <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+              Conseil ajouter avec succès
+            </div>
+            <div class="alert alert-success" *ngIf="f.submitted && isSuccessful">
+              Conseil non Ajouter!
+            </div>
+          </form>
+          
+  
+        </div>
+      </div>
+    </div>
+  </div>

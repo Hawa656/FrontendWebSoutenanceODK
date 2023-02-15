@@ -84,7 +84,7 @@ export class LegumeFruitService {
    
   }
   
-
+// +++++++++++++++++AJOUTER UN LEGUMEFRUIT+++++++++++++++++++++++
   PostLegumeFruit(nom: string, description: string, arrosage: string, periodeNormal: string, dureeFloraisaon: string, file: File, titre: string, etape1: string,etape2: string,etape3: string,etape4: string, etatDeLaTerre: string, espacementEntreGraine: string, type:string, iduser:number):Observable<any> {
     let data = new FormData();
     data.append("nom",nom);
@@ -103,20 +103,45 @@ export class LegumeFruitService {
     
     // data.append("type",type);
 
-    console.log('le nom est ', nom)
-    console.log('le description est ', description)
-    console.log('le arrosage est ', arrosage)
-    console.log('le periodeNormal est ', periodeNormal)
-    console.log('le dureeFloraisaon est ', dureeFloraisaon)
-    console.log('le file est ', file)
-    console.log('le titre est ', titre)
-    console.log('le etapae1 est ', etape1)
-    console.log('le etatDeLaTerre est ', etatDeLaTerre)
-    console.log('le espacementEntreGraine est ', espacementEntreGraine)
-    console.log('le semis est ', etape2)
-    console.log('le bouture est ', etape3)
+    // console.log('le nom est ', nom)
+    // console.log('le description est ', description)
+    // console.log('le arrosage est ', arrosage)
+    // console.log('le periodeNormal est ', periodeNormal)
+    // console.log('le dureeFloraisaon est ', dureeFloraisaon)
+    // console.log('le file est ', file)
+    // console.log('le titre est ', titre)
+    // console.log('le etapae1 est ', etape1)
+    // console.log('le etatDeLaTerre est ', etatDeLaTerre)
+    // console.log('le espacementEntreGraine est ', espacementEntreGraine)
+    // console.log('le semis est ', etape2)
+    // console.log('le bouture est ', etape3)
     return this.http.post<any>( 
       AUTH_API + 'Ajouterajoutfruilegume/' + `${type}/` + `${iduser}`, data
       )
+  }
+
+  // +++++++++++++++++MODIFIER UN LEGUMEFRUIT+++++++++++++++++++++++
+  modifierLegumeFruit(nom: string, description: string, arrosage: string, periodeNormal: string, dureeFloraisaon: string, file: File, titre: string, etape1: string,etape2: string,etape3: string,etape4: string, etatDeLaTerre: string, espacementEntreGraine: string, type:string, iduser:number):Observable<any> {
+    return this.http.put(
+      AUTH_API + 'modifierLegumesFruits/' + `${iduser}`,
+      {
+        "nom":nom,
+         "description":description,
+         "arrosage":arrosage,
+         "periodeNormal":periodeNormal,
+         "dureeFloraisaon":dureeFloraisaon,
+         "file":file,
+         "titre":titre,
+         "etape1":etape1,
+         "etape2":etape2,
+         "etape3":etape3,
+         "etape4":etape4,
+         "etatDeLaTerre":etatDeLaTerre,
+         "espacementEntreGraine":espacementEntreGraine,
+         "type":type,
+         "iduser":iduser,
+    },
+      httpOptions
+    );
   }
 }

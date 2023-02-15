@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { HomeService } from '../_services/home.service';
 import { Video } from '../Video';
 import { LegumeFruitService } from '../_services/legume-fruit.service';
+import { QuestionsService } from '../_services/questions.service';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -14,14 +16,20 @@ export class HomeComponent {
   mesVideos:any;
   legume:any
   tuto:any
+  questionsNonRepondu:any
+  listAdmin:any
+  listUser:any
 
-  constructor(private homeService: HomeService,private legumeFruitService:LegumeFruitService, private httpClient: HttpClient) { }
+  constructor(private homeService: HomeService,private userservice:UserService, private questionService: QuestionsService,private legumeFruitService:LegumeFruitService, private httpClient: HttpClient) { }
 
   ngOnInit() {
     this.getvideolist()
     this.getNbreFruit()
     this.getNbreLegume()
     this.getNbreTutoriel()
+    this.getNbreListeDesQuestionsNonRepondu()
+    this.getNbreAdmin()
+    this.getNbreUser()
   }
 
   getvideolist() {
@@ -52,7 +60,24 @@ export class HomeComponent {
     });
   }
 
+  getNbreListeDesQuestionsNonRepondu(){
+    this.questionService.getListeDesQuestionsNonRepondu().subscribe(data => {
 
+      this.questionsNonRepondu = data
+    });
+  }
+
+getNbreAdmin(){
+  this.userservice.getListUserByRole("user").subscribe(data => {
+    this.listAdmin = data
+  });
+}
+
+getNbreUser(){
+  this.userservice.getListUserByRole("admin").subscribe(data => {
+    this.listUser = data
+  });
+}
 
 }
 

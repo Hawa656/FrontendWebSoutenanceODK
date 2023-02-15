@@ -36,6 +36,27 @@
      background: #FFFFFF;
      box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.25);
  }
+ .iconss{
+    //background: red;
+     margin: 0;
+     padding: 0;
+  }
+  .btn{
+    // background: #399C28;
+    color: #399C28;
+    border: solid #399C28 1px;
+  }
+  .btn:hover{
+    background: none;
+  }
+  .iconss i{
+    //padding-left: 10px;
+    color: #4ECB71;
+    font-size: 1.3rem;
+    display: flex;
+    flex-direction: row;
+    margin: 4px;
+  }
  .title2{
      font-size: 15px;
      color: black;

@@ -13,12 +13,22 @@ export class HeaderComponent implements OnInit {
   isLoggedIn = false;
   errorMessage = '';
 
+  user:any
+  
+  monStatus: any;
+
   constructor(private router: Router, private authService: AuthService, private userService: StorageService) {
     this.initializeApp();
   }
 
   ngOnInit(): void {
     this.isLoggedIn = this.userService.isLoggedIn();
+
+    this.user = this.userService.getUser();
+    if(this.user.id != null ){
+     console.log(this.user.statusUser.idstatus)
+     this.monStatus = this.user.statusUser.idstatus
+    }
   }
 
   deconnexion(): void {
@@ -27,11 +37,13 @@ export class HeaderComponent implements OnInit {
         console.log(res);
         this.userService.clean();
          this.router.navigate(['/connexion']);
+         this.reloadPage()
       },
       error: err => {
         console.log(err);
       }
     });
+
   }
   
   initializeApp() {
@@ -43,6 +55,11 @@ export class HeaderComponent implements OnInit {
   toggleSidebar() {
     this.toggleSidebarForMe.emit();
   }
+// POUR RECHARGER LA PAGE AUTOMATIQUEMENT
+  reloadPage(): void {
+    window.location.reload();
+  }
+  
 }
 
 

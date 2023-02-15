@@ -40,7 +40,7 @@
             <div class="col-6 col-md-5">
               <div class="iconss align-items-center justify-content-center">
                 <div class="d-flex">
-                  <i class="bi bi-pencil-square"></i>
+                  <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i></span>
                   <i class="bi bi-eye"></i>
                   <span type="button" class="adpd" data-bs-toggle="modal" data-bs-target="#supprimer"
                   (click)="openModal(Legume.nom, Legume.id)"><i class="bi bi-trash" ></i></span>
@@ -52,9 +52,221 @@
       </div>
     </div>
 
-
+    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 100%;background: #399C28; color: white;">
+      Ajouter une vidéo
+    </button> -->
     
+<!-- =======================================MODAL====================================================== -->
 
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+
+        <form action="" method="post"
+          *ngIf="!isSuccessful"
+          name="form"
+          (ngSubmit)="f.form.valid && onSubmit()"
+          #f="ngForm"
+          novalidate
+          >
+            <h2 class="text-center pb-4">Ajouter Un Tutoriel</h2>
+            <fieldset>
+              <div class="row mb-3">
+                <div class="form-group col-12 col-md-6 ">
+                  <label for="NomRegion">Nom </label>
+                  <input  class="form-control" id="inputNomRegion" placeholder=""
+                  type="text"
+                  name="nom"
+                  [(ngModel)]="form.nom"
+                  required
+                  #nom="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && nom.errors }"
+                  >
+                </div>
+                <div class="invalid-feedback" *ngIf="nom.errors && f.submitted">
+                  <div *ngIf="nom.errors['required']">Le nom est obligatoire</div>
+                </div>
+                
+                <div class="form-group col-12 col-md-6 mb-3">
+                  <label for="type">Type</label>
+                  <select name="type"  [(ngModel)]="form.type" id="pet-select" class="form-control" >
+                    <!-- <option value=""><i class="bi bi-chevron-down"></i><option> -->
+                    <option [value]="Type.type" *ngFor="let Type of form.types">{{Type.type}}</option>
+                    <!-- <option value="Fruit">Fruit</option> -->
+                  </select>  
+                </div>  
+                <div class="row mb-3">
+                  <div class="form-group">
+                    <label for="Description">Description du fruit ou légume</label>
+                    <textarea class="form-control" id="Description" rows="3" placeholder=""
+                    name="description"
+                    [(ngModel)]="form.description"
+                    required
+                    #description="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && description.errors }"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="form-group col-12 col-md-6 ">
+                  <label for="periodeNormal">Période normal</label>
+                  <input type="text" name="form.periodeNormal" class="form-control" id="form.periodeNormal" placeholder=""
+                  name="periodeNormal"
+                  [(ngModel)]="form.periodeNormal"
+                  required
+                  #periodeNormal="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && periodeNormal.errors }"
+                  >
+                </div>
+                <div class="form-group col-12 col-md-6 ">
+                  <label for="LangueMajoritairementParlée">Arrosage</label>
+                  <input type="text" class="form-control" name="" id="inputLangueMajoritairementParlée" placeholder=""
+                  name="arrosage"
+                  [(ngModel)]="form.arrosage"
+                  required
+                  #arrosage="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && arrosage.errors }"
+                  >
+                </div>  
+              </div>
+              <div class="row mb-3">
+                <div class="form-group col-12 col-md-6 mb-3">
+                  <label for="ChiffresPopulation">Récolte</label>
+                  <input type="text" class="form-control" id="inputChiffresPopulation" placeholder=""
+                  name="dureeFloraisaon"
+                  [(ngModel)]="form.dureeFloraisaon"
+                  required
+                  #dureeFloraisaon="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && dureeFloraisaon.errors }"
+                  >
+                </div>
+                <div class="form-group col-12 col-md-6 mb-3">
+                  <label for="ChiffresPopulation">Titre du tutoriel</label>
+                  <input type="text" class="form-control" id="inputChiffresPopulation" placeholder=""
+                  name="titre"
+                  [(ngModel)]="form.titre"
+                  required
+                  #titre="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && titre.errors }"
+                  >
+                </div>
+                
+
+                <div class="row mb-3">
+                  <div class="form-group">
+                    <label for="Description">Etape1</label>
+                    <textarea class="form-control" id="etape1" rows="3" placeholder=""
+                    name="etape1"
+                    [(ngModel)]="form.etape1"
+                    required
+                    #etape1="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && etape1.errors }"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="form-group">
+                    <label for="Description">Etape2</label>
+                    <textarea class="form-control" id="etape2" rows="3" placeholder=""
+                    name="etape2"
+                    [(ngModel)]="form.etape2"
+                    required
+                    #etape2="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && etape2.errors }"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="form-group">
+                    <label for="Description">Etape3</label>
+                    <textarea class="form-control" id="etape3" rows="3" placeholder=""
+                    name="etape3"
+                    [(ngModel)]="form.etape3"
+                    required
+                    #etape3="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && etape3.errors }"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="form-group">
+                    <label for="etape4">Etape4</label>
+                    <textarea class="form-control" id="etape4" rows="3" placeholder=""
+                    name="etape4"
+                    [(ngModel)]="form.etape4"
+                    required
+                    #etape4="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && etape4.errors }"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+              <div class="form-group col-12 col-md-12 mb-3">
+                <label for="ChiffresPopulation">Photo</label>
+                <input type="file" (change)="filechange($event)" class="form-control" id="inputChiffresPopulation" placeholder=""
+               
+                >
+              </div>
+              <!-- <div class="form-group col-12 col-md-6 mb-3">
+                <label for="ChiffresPopulation">Vidéo</label>
+                <input type="file" class="form-control" id="inputChiffresPopulation" placeholder="">
+              </div> -->
+            </div>
+              <div class="row mb-3">
+                <div class="form-group col-12 col-md-6 ">
+                  <label for="ChiffresPopulation">Etat de la terre</label>
+                  <input type="text" class="form-control" id="inputChiffresPopulation" placeholder=""
+                  name="etatDeLaTerre"
+                  [(ngModel)]="form.etatDeLaTerre"
+                  required
+                  #etatDeLaTerre="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && etatDeLaTerre.errors }"
+                  >
+                </div>
+                <div class="form-group col-12 col-md-6 mb-3">
+                  <label for="Superficie">Espacement entre graine</label>
+                  <input type="text" class="form-control" id="inputSuperficie" placeholder=""
+                  name="espacementEntreGraine"
+                  [(ngModel)]="form.espacementEntreGraine"
+                  required
+                  #espacementEntreGraine="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && espacementEntreGraine.errors }"
+                  >
+                </div>  
+              </div>
+           
+              <button type="submit" class="btn btn-primary mb-2 connexion text-white align-items-center">Valider</button>
+              <div class="alert alert-warning" *ngIf="f.submitted && isSuccessful">
+                tutoriel non modifié!
+              </div>
+            </fieldset>
+          </form>
+          <div class="alert alert-success" *ngIf="isSignUpFailed">
+            Tutoriel modifier avec succès!<br />{{ errorMessage }}
+          </div>
+        </div>
+      </div>
+        
+
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
