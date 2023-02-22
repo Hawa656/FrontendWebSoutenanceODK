@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 const AUTH_API = 'http://localhost:8080/api/legumefruit/';
-// const api = 'http://localhost:8080/api/TypeLegumeFruit/';
+const AUTH_API1 = 'http://localhost:8080/api/tuto/';
+const AUTH_API3 = 'http://localhost:8080/api/etape/';
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -43,6 +45,13 @@ export class LegumeFruitService {
     return this.http.get(`${this.api1}/RecupererIdLegumeFruit/${id}`);
   }
 
+  //RECUPERATION DE L'ID DU TUTORIEL 
+  recupererIdTuto(idTuto:number):Observable<any>{
+    return this.http.get<any>( 
+      AUTH_API1 + 'RecupererIdTutoriel' + `${idTuto}`
+      )
+  }
+
 
   
    //SUPPRIMER LEGUME OU FRUIT ET LE TUTORIEL ASSOCIE
@@ -50,27 +59,7 @@ export class LegumeFruitService {
     return this.http.delete(`${this.apiSupprimer}/supprimerlegumesFruits/${id}`);
   }
 
-// AjoutLegumeFruit(nom: string, description: string, arrosage: string, periodeNormal: string, dureeFloraisaon: string, file: File, titre: string, descriptiont: string, etatDeLaTerre: string, espacementEntreGraine: string, semis: boolean,bouture: boolean): Observable<any> {
-//     return this.http.post(
-//       AUTH_API + 'Ajouterajoutfruilegume',
-      
-//       {
-//         nom,
-//         description,
-//         arrosage,
-//         periodeNormal,
-//         dureeFloraisaon,
-//         file,
-//         titre,
-//         descriptiont,
-//         etatDeLaTerre,
-//         espacementEntreGraine,
-//         semis,
-//         bouture
-//       },
-//       httpOptions
-//     );
-//   }
+
   //AFFICHAGE TYPELEGUMEFRUIT
   GetTypeLegumeFruit():Observable<any>{
     return this.http.get(`${this.api}/lireTypeLegumeFruit`);
@@ -83,9 +72,45 @@ export class LegumeFruitService {
       )
    
   }
+
+  //AFFICHAGE TUTORIEL
+  GetTUtoriel():Observable<any>{
+    return this.http.get<any>( 
+      AUTH_API1 + 'lireTutoriel'
+      )
+   
+  }
+
+  // +++++++++++++++++AJOUTER UNE ETAPE+++++++++++++++++++++++
+  PostEtape(titre: any, file: File, etape: any, idTuto: number): Observable<any> {
+    let data = new FormData();
+    data.append("titre", titre);
+    data.append("etape", etape);  
+    data.append("file", file);
   
-// +++++++++++++++++AJOUTER UN LEGUMEFRUIT+++++++++++++++++++++++
-  PostLegumeFruit(nom: string, description: string, arrosage: string, periodeNormal: string, dureeFloraisaon: string, file: File, titre: string, etape1: string,etape2: string,etape3: string,etape4: string, etatDeLaTerre: string, espacementEntreGraine: string, type:string, iduser:number):Observable<any> {
+    return this.http.post<any>(
+      AUTH_API3 + 'ajouterEtape/' + `${idTuto}`, data
+    );
+  }
+  
+
+
+   // +++++++++++++++++AJOUTER UN TUTORIEL+++++++++++++++++++++++
+   PostTutoriel(donner:any, idLegumeFruit:number):Observable<any> {
+    // let data = new FormData();
+    // data.append("titre",titre);
+    // data.append("espacementEntreGraine",espacementEntreGraine);
+
+    // console.log('le nom est ', nom)
+    // console.log('le description est ', description)
+    
+    return this.http.post<any>( 
+      AUTH_API1 + 'AjouterTutoriel/' , donner
+      )
+  }
+
+  // +++++++++++++++++AJOUTER UN LEGUMEFRUIT+++++++++++++++++++++++
+  PostLegumeFruit(nom: string, description: string, arrosage: string, periodeNormal: string, dureeFloraisaon: string, file: File , type:string, idTuto:number,iduser:number):Observable<any> {
     let data = new FormData();
     data.append("nom",nom);
     data.append("description",description);
@@ -93,13 +118,7 @@ export class LegumeFruitService {
     data.append("periodeNormal",periodeNormal);
     data.append("dureeFloraisaon",dureeFloraisaon);
     data.append("file",file);
-    data.append("titre",titre);
-    data.append("etape1",etape1);
-    data.append("etape2",etape2);
-    data.append("etape3",etape3);
-    data.append("etape4",etape4);
-    data.append("etatDeLaTerre",etatDeLaTerre);
-    data.append("espacementEntreGraine",espacementEntreGraine);
+    
     
     // data.append("type",type);
 
@@ -109,16 +128,12 @@ export class LegumeFruitService {
     // console.log('le periodeNormal est ', periodeNormal)
     // console.log('le dureeFloraisaon est ', dureeFloraisaon)
     // console.log('le file est ', file)
-    // console.log('le titre est ', titre)
-    // console.log('le etapae1 est ', etape1)
-    // console.log('le etatDeLaTerre est ', etatDeLaTerre)
-    // console.log('le espacementEntreGraine est ', espacementEntreGraine)
-    // console.log('le semis est ', etape2)
-    // console.log('le bouture est ', etape3)
     return this.http.post<any>( 
-      AUTH_API + 'Ajouterajoutfruilegume/' + `${type}/` + `${iduser}`, data
+      AUTH_API + 'Ajouterajoutfruilegume/' + `${type}/` + `${idTuto}/`+ `${iduser}`, data
       )
   }
+  
+
 
   // +++++++++++++++++MODIFIER UN LEGUMEFRUIT+++++++++++++++++++++++
   modifierLegumeFruit(nom: string, description: string, arrosage: string, periodeNormal: string, dureeFloraisaon: string, file: File, titre: string, etape1: string,etape2: string,etape3: string,etape4: string, etatDeLaTerre: string, espacementEntreGraine: string, type:string, iduser:number):Observable<any> {

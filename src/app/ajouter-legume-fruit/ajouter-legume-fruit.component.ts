@@ -53,50 +53,50 @@ export class AjouterLegumeFruitComponent {
     this.file = event.target['files'][0];
     console.log(event)
   }
-  onSubmit(): void {
-    const { 
-      nom,
-      description,
-      arrosage,
-      periodeNormal,
-      dureeFloraisaon,
-      titre,
-      etape1,
-      etape2,
-      etape3,
-      etape4,
-      etatDeLaTerre,
-      espacementEntreGraine,
-      semis,
-      bouture,
-      type,
-    } = this.form;
-    console.log(type)
-    this.legumeFruitService.PostLegumeFruit(nom,
-      description,
-      arrosage,
-      periodeNormal,
-      dureeFloraisaon,
-      this.file,
-      titre,
-      etape1,
-      etape2,
-      etape3,
-      etape4,
-      etatDeLaTerre,
-      espacementEntreGraine,
-      type, this.User.id).subscribe({
-        next: data => {
-          console.log(data);
-          this.isSuccessful = true;
-          this.isSignUpFailed = false;
-        },
-        error: err => {
-          this.errorMessage = err.error.message;
-          this.isSignUpFailed = true;
-        }
-      });
-  }
+  // onSubmit(): void {
+  //   const { 
+  //     nom,
+  //     description,
+  //     arrosage,
+  //     periodeNormal,
+  //     dureeFloraisaon,
+  //     titre,
+  //     etape1,
+  //     etape2,
+  //     etape3,
+  //     etape4,
+  //     etatDeLaTerre,
+  //     espacementEntreGraine,
+  //     semis,
+  //     bouture,
+  //     type,
+  //   } = this.form;
+  //   console.log(type)
+  //   this.legumeFruitService.PostLegumeFruit(nom,
+  //     description,
+  //     arrosage,
+  //     periodeNormal,
+  //     dureeFloraisaon,
+  //     this.file,
+  //     titre,
+  //     // etape1,
+  //     // etape2,
+  //     // etape3,
+  //     // etape4,
+  //     // etatDeLaTerre,
+  //     espacementEntreGraine,
+  //     type, this.User.id).subscribe({
+  //       next: data => {
+  //         console.log(data);
+  //         this.isSuccessful = true;
+  //         this.isSignUpFailed = false;
+  //       },
+  //       error: err => {
+  //         this.errorMessage = err.error.message;
+  //         this.isSignUpFailed = true;
+  //       }
+  //     });
+  // }
 
 
 

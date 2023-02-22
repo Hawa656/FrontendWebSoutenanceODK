@@ -30,6 +30,9 @@ import { QuestionsComponent } from './questions/questions.component';
 import { ReponsesComponent } from './reponses/reponses.component';
 import { UsersComponent } from './users/users.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AjoutTutorielComponent } from './ajout-tutoriel/ajout-tutoriel.component';
+import { AjoutEtapeComponent } from './ajout-etape/ajout-etape.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -52,6 +55,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
     QuestionsComponent,
     ReponsesComponent,
     UsersComponent,
+    AjoutTutorielComponent,
+    AjoutEtapeComponent,
+    
+    
+  
   ],
   imports: [
     BrowserModule,
@@ -67,6 +75,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule,
     FormsModule,
     NgxPaginationModule,
+    MatDialogModule,
     Ng2SearchPipeModule
   ],
   providers: [httpInterceptorProviders],

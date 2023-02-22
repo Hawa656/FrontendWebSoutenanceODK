@@ -1,0 +1,69 @@
+<form action="" method="post" *ngIf="!isSuccessful" name="formT" (ngSubmit)="f.form.valid && onSubmit()"
+                      #f="ngForm" novalidate>
+                      <div class="container">
+                        <h2 class="text-center mb-3">Ajouter </h2>
+                        <fieldset>
+                          <!-- <div class="row mb-3"> -->
+                          <!-- <div class="row"> -->
+                          <div class="row mb-3">
+                            <div class="form-group col-12 col-md-12 ">
+                              <label for="NomRegion">Titre de l'etape </label>
+                              <input class="form-control" id="titre" placeholder="" type="text" name="titre"
+                                [(ngModel)]="form.titre" required #titre="ngModel"
+                                [ngClass]="{ 'is-invalid': f.submitted && titre.errors }">
+                            </div>
+                            <div class="invalid-feedback" *ngIf="titre.errors && f.submitted">
+                              <div *ngIf="titre.errors['required']">Le Titre est obligatoire</div>
+                            </div>
+        
+                          </div>
+                          
+                          <div class="row  mb-3">
+                            <div class="form-group col-12 ">
+                              <label for="periodeNormal">Etape</label>
+                              <textarea class="form-control" id="etape" rows="3" placeholder="" name="etape"
+                                [(ngModel)]="form.etape" required #etape="ngModel"
+                                [ngClass]="{ 'is-invalid': f.submitted && etape.errors }"></textarea>
+                            </div>
+                            
+                            
+                          </div>
+
+                          <div class="row  mb-3">
+                            <div class="form-group  mb-3">
+                                <label for="ChiffresPopulation">Photo</label>
+                                <input type="file" (change)="filechange($event)" class="form-control" id="photo"
+                                  placeholder="">
+                              </div>
+                            
+                            
+                          </div>
+                          
+                          <div class="row mb-3">
+
+                            <div class="form-group col-12 mb-3 ">
+                                <label for="type">Choisir </label>
+                                <select name="type" [(ngModel)]="tutoriel1" id="pet-select" class="form-control">
+                                  <!-- <option value=""><i class="bi bi-chevron-down"></i><option>  -->
+                                  <option value="{{Tutoriel.id}}" *ngFor="let Tutoriel of tutoriel">{{Tutoriel.titre}}</option>
+          
+                                </select>
+                                <!-- </div>   -->
+                              </div>
+                            
+                            <div class="col-12">
+                             
+                              <button type="submit" style="width: 100%; background: #FBC201; border: none;"
+                              class="btn mb-2 connexion text-white align-items-center">Valider</button>
+                             
+                             </div>
+                            <div class="alert alert-warning" *ngIf="f.submitted && isSuccessful">
+                              Etape non Ajouter!
+                            </div>
+                          </div>
+                        </fieldset>
+                      </div>
+                    </form>
+                    <div class="alert alert-success" >
+                      Etape ajouter avec succès!<br />{{ errorMessage }}
+                    </div>

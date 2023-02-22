@@ -10,6 +10,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FruitsComponent } from './fruits/fruits.component';
 import { ConseilsComponent } from './conseils/conseils.component';
 import { UsersComponent } from './users/users.component';
+import { AjoutTutorielComponent } from './ajout-tutoriel/ajout-tutoriel.component';
+import { AjoutEtapeComponent } from './ajout-etape/ajout-etape.component';
 
 const routes: Routes = [
   {path:'', redirectTo: 'connexion', pathMatch: 'full'},
@@ -23,6 +25,8 @@ const routes: Routes = [
   {path:'fruits', component:FruitsComponent},
   {path:'conseils', component:ConseilsComponent},
   {path:'users', component:UsersComponent},
+  {path:'ajout-tutoriel', component:AjoutTutorielComponent},
+  {path:'etape', component:AjoutEtapeComponent},
 ];
 
 @NgModule({

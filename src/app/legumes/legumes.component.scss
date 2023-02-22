@@ -7,6 +7,7 @@
     background-size: cover;
 }
 
+
 .search-container {
     display: flex;
     flex-direction: column;
@@ -18,14 +19,14 @@
     border: solid #399C28 1px;
   }
   
-  input[type="text"] {
-    padding: 8px;
-    font-size: 16px;
-    width: 50%;
-    margin-bottom: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
+  // input[type="text"] {
+  //   padding: 8px;
+  //   font-size: 16px;
+  //   width: 50%;
+  //   margin-bottom: 16px;
+  //   border: 1px solid #ccc;
+  //   border-radius: 4px;
+  // }
   
   .search-results {
     width: 50%;
