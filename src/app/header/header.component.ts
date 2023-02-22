@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
 
   user:any
   
-  monStatus: any;
+
 
   constructor(private router: Router, private authService: AuthService, private userService: StorageService) {
     this.initializeApp();
@@ -25,10 +25,7 @@ export class HeaderComponent implements OnInit {
     this.isLoggedIn = this.userService.isLoggedIn();
 
     this.user = this.userService.getUser();
-    if(this.user.id != null ){
-     console.log(this.user.statusUser.idstatus)
-     this.monStatus = this.user.statusUser.idstatus
-    }
+   
   }
 
   deconnexion(): void {

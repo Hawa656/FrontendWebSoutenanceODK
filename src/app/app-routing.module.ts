@@ -9,6 +9,7 @@ import { LegumesComponent } from './legumes/legumes.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FruitsComponent } from './fruits/fruits.component';
 import { ConseilsComponent } from './conseils/conseils.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   {path:'', redirectTo: 'connexion', pathMatch: 'full'},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path:'legumes', component:LegumesComponent},
   {path:'fruits', component:FruitsComponent},
   {path:'conseils', component:ConseilsComponent},
+  {path:'users', component:UsersComponent},
 ];
 
 @NgModule({

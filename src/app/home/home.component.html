@@ -13,7 +13,7 @@
 <div class="row">
     <div class=" image  text-white text-center text marge">
         <h1 class="fw-bolder text">Tableau de bord de l’administrateur</h1>
-        <p class="p">Bienvenue Hawa, ayez totalement la main sur vos informations</p>
+        <p class="p">Bienvenue {{user.nom}} {{user.prenom}}, ayez totalement la main sur vos informations</p>
     </div>
 </div>
 <div class="row  t ">
@@ -53,12 +53,12 @@
         <div class="col-md-4 pad">
             <div class="card shadow-sm d-flex justify-content-around align-items-center rounded"
                 style="background: #399C28;">
-                <div class="elements pb-3 pt-2 ">
+                <div class="elements pb-3 pt-2 " routerLink="/users">
                     <div class="img">
                         <img src="../../assets/1.png" alt="">
                     </div>
                     <div>
-                        <h3 class="fs-2">{{listUser.length}}</h3>
+                        <h3 class="fs-2">{{listUser}}</h3>
                         <p class="fs-5">Utilisateurs</p>
                     </div>
                 </div>
@@ -68,19 +68,19 @@
         <div class="col-md-4 pad">
             <div class="card shadow-sm pb-4 d-flex justify-content-around align-items-center rounded"
                 style="background: #FBC201;">
-                <div class="elements pb-2 pt-4">
+                <div class="elements pb-2 pt-4" routerLink="/users">
                     <div class="img2 ">
                         <img src="../../assets/Group 148.png" alt="" style="width: 68px; height: 70px;">
                     </div>
                     <div>
-                        <h3 class="fs-2">{{listAdmin.length}}</h3>
+                        <h3 class="fs-2">{{listAdmin}}</h3>
                         <p class="fs-5">Admin</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4 pad">
+        <div class="col-md-4 pad" routerLink="/questions">
             <div class="card shadow-sm pb-4 d-flex justify-content-between align-items-center rounded"
                 style="background: #2D6650;">
                 <div class="elements pt-4 pb-2">
@@ -88,7 +88,7 @@
                         <img src="../../assets/Group 123.png" alt="" style="width: 68px; height: 70px;">
                     </div>
                     <div>
-                        <h3 class="fs-2">{{questionsNonRepondu.length}}</h3>
+                        <h3 class="fs-2">{{questionsNonRepondu}}</h3>
                         <p class="fs-5">Commentaires</p>
                     </div>
                 </div>
@@ -102,15 +102,15 @@
         <div class="row  text-white fw-bold">
             <div class="col-12 col-md-5 text-center mr-0" style="background: #D9D9D9;">
                 <div class="row rpadding">
-                    <div class="col-12 col-md-5 paddind" style="background: #999090;">
+                    <div class="col-12 col-md-5 paddind" style="background: #999090;" routerLink="/fruits">
                         <img src="../../assets/Vector.png" alt="" class="mb-4">
-                        <h3 class="fs-1">{{fruit.length}}</h3>
+                        <h3 class="fs-1">{{fruit}}</h3>
                         <p class="fs-4">Fruits</p>
                     </div>
                     <div class="col-1"></div>
-                    <div class="col-12 col-md-5 paddind" style="background: #999090;">
+                    <div class="col-12 col-md-5 paddind" style="background: #999090;" routerLink="/legumes">
                         <img src="../../assets/Group.png" alt="" class="mb-4">
-                        <h3 class="fs-1">{{legume.length}}</h3>
+                        <h3 class="fs-1">{{legume}}</h3>
                         <p class="fs-4">Légumes</p>
                     </div>
                 </div>
@@ -122,13 +122,13 @@
                 <div class="row rpadding">
                     <div class="col-12 col-md-5 paddind" style="background: #999090;">
                         <img src="../../assets/Vector (1).png" alt="" class="mb-4">
-                        <h3 class="fs-1">{{tuto.length}}</h3>
+                        <h3 class="fs-1">{{tuto}}</h3>
                         <p class="fs-4">Tutoriels</p>
                     </div>
                     <div class="col-1"></div>
-                    <div class="col-12  col-md-5 paddind" style="background: #999090;">
+                    <div class="col-12  col-md-5 paddind" style="background: #999090;" routerLink="/videos">
                         <img src="../../assets/Vector (2).png" alt="" class="mb-4">
-                        <h3 class="fs-1">{{mesVideos.length}}</h3>
+                        <h3 class="fs-1">{{mesVideos}}</h3>
                         <p class="fs-4">Vidéos</p>
                     </div>
                 </div>

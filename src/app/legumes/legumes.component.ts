@@ -13,6 +13,7 @@ import { UserService } from '../_services/user.service';
 })
 export class LegumesComponent implements OnInit {
 
+  idLegume:any
   form: any = {
     nom: null,
     description: null,
@@ -72,16 +73,26 @@ export class LegumesComponent implements OnInit {
         //suppp
         this.legumeFruitService.supprimerLegumesFruits(id).subscribe(data => {
           this.tousLesLegumes()
-
+          
           console.log(id)
-          Swal.fire(
-            'Supprimer!',
-            'supprimé avec succès'
-          );
+          Swal.fire({
+            title: 'Supprimer  avec succès',
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+          });
+          // window.location.reload()
+          this.reloadPage()
         });
 
       }
     });
+  }
+
+  // POUR RECHARGER LA PAGE AUTOMATIQUEMENT
+  reloadPage(): void {
+    window.location.reload();
   }
 
   // ========================================== RECUPERATION DE TOUS LES LEGUMES
@@ -97,6 +108,11 @@ export class LegumesComponent implements OnInit {
   filechange(event: any) {
     this.file = event.target['files'][0];
     console.log(event)
+  }
+
+
+  getLegumeId(id:number){
+    this.idLegume=id
   }
 
   onSubmit(): void {

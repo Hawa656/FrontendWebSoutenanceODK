@@ -25,15 +25,17 @@
   <!-- =============Listes des conseils=============== -->
   
    
-   <div class="container">
-    <div class="row princ mb-3" *ngFor="let Conseil of conseil| filter:searchText" (click)="goToDetailConseils(Conseil.id)">
-        <div class="col-5 img2">
-          <img src="{{Conseil.photo}}" alt="image de conseil" width="100%" height="100vh" style="padding: 0;" class=" image">
-        </div>
-        <div  class=" textLeft col-7 " >
-          <h1 class="title2 mb-1">{{Conseil.titre}}</h1>
-          <p class="p2 ">{{Conseil.description | slice:0:200}}</p>
-
+   <div class="container ">
+    <div class="row princ mb-3 p-0 m-0" *ngFor="let Conseil of conseil| filter:searchText" (click)="goToDetailConseils(Conseil.id)">
+       
+            <div class="col-5 img2 ">
+                <img src="{{Conseil.photo}}" alt="image de conseil"  height="100vh" style="padding: 0;" class=" image">
+              </div>
+              <div  class=" textLeft col-7 " >
+                <h1 class="title2 mb-1">{{Conseil.titre}}</h1>
+                <p class="p2 ">{{Conseil.description | slice:0:200}}</p>
+      
+      
           <div class="row">
             <div class="col-6"></div>
 
@@ -124,3 +126,19 @@
       </div>
     </div>
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

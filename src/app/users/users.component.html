@@ -1,0 +1,301 @@
+ <div class="container" > 
+    <div class="debut p-4 mt-4" style="background: #2D6650; height: 20%;">
+        <p class="" style="color: white; font-size: 30px ; display: flex; justify-content: center;align-items: center;line-height: normal;">Liste des utilisateurs et Administrateurs</p>
+    </div>
+ </div> 
+
+ <div class="container py-3 mt-4">
+    <div class="row">
+      <div class="col-md-3">
+        <select class="form-select" aria-label="Filtrer"   name="textFiltree"  [(ngModel)]="textFiltree">
+          <label for="filtre" class="text-dark">Filtrer</label>
+          <option selected>Tout</option>
+          <option>ROLE_ADMIN</option>
+          <option>ROLE_USER</option>
+        </select>
+        </div>
+     
+      <div class="col-md-6 ">
+        <div class="input-group">
+          <input [(ngModel)]="searchText" type="search" class="form-control rounded" placeholder="Search"
+            aria-label="Search" aria-describedby="search-addon" />
+          <button type="button" class="btn btn-outline-primary">Rechercher</button>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 100%;background: #399C28;border: none; color: white;">
+          Ajouter un Admin
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="content">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
+        integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
+        integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
+
+    <div class="container">
+        <div class="col-12 ">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <!-- <h5 class="card-title pt-2 fw-bold text-primary">Liste des formateurs <span
+                                class="fw-normal ms-2">é"</span>
+                        </h5> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="">
+                        <div class="table-responsive">
+                            <table class="table project-list-table table-nowrap align-middle table-borderless">
+                                <thead>
+                                    <!-- ----------------------- Tittre tableau en haut---------------------------
+                                --------------------------------------------------- -->
+                                    <tr class=" text-light" style="background: #2D6650;">
+                                        <th scope="col">Nom</th>
+                                        <th scope="col">Prénom</th>
+                                        <th scope="col">Numéro </th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Role</th>
+                                        <th scope="col" style="width: 300px;">Action</th>
+                                    </tr>
+                                    <!-- ----------------------- Fin Tittre tableau en haut---------------------------
+                                --------------------------------------------------- -->
+                                </thead>
+                                <tbody class="text-dark">
+                                    <!-- ----------------------- Liste Element tableau start---------------------------
+                                --------------------------------------------------- -->
+                                    <tr *ngFor=" let usr of user | paginate: {itemsPerPage:5, currentPage:paginateNumber}| filter:textFiltree">
+
+                                        <td>
+                                            <p class="text-body mb-0">{{usr.nom}}</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-body mb-0">{{usr.prenom}}</p>
+                                        </td>
+                                        <td><span
+                                                class="badge badge-soft-success mb-0 text-uppercase">{{usr.numero}}</span>
+                                        </td>
+                                        <td>
+                                            <p class="text-body mb-0">{{usr.email}}</p>
+                                        </td>
+
+                                        <td>
+                                          <p class="text-body mb-0">{{usr.roles[0].name}}</p>
+                                      </td>
+                                     
+                                        <td>
+                                            <ul class="list-inline mb-0" >
+                                                <li class="list-inline-item">
+                                                    <a href="javascript:void(0);" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top" title="supprimer"
+                                                        class="px-2 text-danger">
+                                                        <i i class="bi bi-trash font-size-18"  ></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <!-- ----------------------- Fin Element liste tableau---------------------------
+                                ----------------------------------------------------------------------------- -->
+
+
+                                </tbody>
+                            </table>
+                            <pagination-controls  class="text-center" (pageChange)="paginateNumber = $event"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+  <!-- =======================================MODAL====================================================== -->
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" >
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter Un Administrateur</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+  
+  
+            <form  class="pt-4"
+            *ngIf="!isSuccessful"
+             name="form"
+             (ngSubmit)="f.form.valid && onSubmit()"
+             #f="ngForm"
+             novalidate
+            >
+       
+             <label for="nom" class="form-label mb-0">Nom</label>
+             <input class="form-control mb-2" id="exampleInputNom"
+             placeholder="Entrer votre nom"
+             type="text"
+                 name="nom"
+                 [(ngModel)]="form.nom"
+                 required
+                 minlength="3"
+                 maxlength="20"
+                 #nom="ngModel"
+                 [ngClass]="{ 'is-invalid': f.submitted && nom.errors }"
+             >
+             <div class="invalid-feedback" *ngIf="nom.errors && f.submitted">
+               <div *ngIf="nom.errors['required']">Le nom est obligatoire</div>
+               <div *ngIf="nom.errors['minlength']">
+                 Le nom doit au moins avoir 3 caratères
+               </div>
+               <div *ngIf="nom.errors['maxlength']">
+                 Le nom doit au plus avoir 20 caratères
+               </div>
+             </div>
+           
+       
+             <label for="prenom" class="form-label mb-0">Prenom</label>
+             <input  class="form-control mb-2" 
+             placeholder="Entrer votre prenom"
+             type="text"
+                 
+                 name="prenom"
+                 [(ngModel)]="form.prenom"
+                 required
+                 minlength="3"
+                 maxlength="20"
+                 #prenom="ngModel"
+                 [ngClass]="{ 'is-invalid': f.submitted && prenom.errors }"
+             
+             >
+             <div class="invalid-feedback" *ngIf="prenom.errors && f.submitted">
+               <div *ngIf="prenom.errors['required']">Le prenom est obligatoire</div>
+               <div *ngIf="prenom.errors['minlength']">
+                 Le prenom doit au moins avoir 3 caratères
+               </div>
+               <div *ngIf="prenom.errors['maxlength']">
+                 Le prenom doit au plus avoir 20 caratères
+               </div>
+             </div>
+       
+             <label for="numero" class="form-label mb-0">Numéro</label>
+             <input type="text" class="form-control mb-2" id="exampleInputNumero"
+             placeholder="Entrer votre numero"
+             type="text"
+             name="numero"
+                 [(ngModel)]="form.numero"
+                 required
+                 minlength="8"
+                 maxlength="12"
+                 #numero="ngModel"
+                 [ngClass]="{ 'is-invalid': f.submitted && numero.errors }"
+                 >
+                 <div class="invalid-feedback" *ngIf="numero.errors && f.submitted">
+                   <div *ngIf="numero.errors['required']">Le numero est obligatoire</div>
+                   <div *ngIf="numero.errors['minlength']">
+                     Le numero doit au moins avoir 8 caratères
+                   </div>
+                   <div *ngIf="numero.errors['maxlength']">
+                     Le numero doit au plus avoir 12 caratères
+                   </div>
+                 </div>
+       
+             <label for="email" class="form-label mb-0">Email</label>
+             <input  class=" mb-2" id="exampleInputEmail1" aria-describedby="emailHelp"
+             placeholder="Entrer votre email"
+             type="email"
+             class="form-control"
+             name="email"
+             [(ngModel)]="form.email"
+             
+             email
+             #email="ngModel"
+             [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
+             >
+             <div class="invalid-feedback" *ngIf="email.errors && f.submitted">
+               <div *ngIf="email.errors['required']">Email obligatoire</div>
+               <div *ngIf="email.errors['email']">
+                Votre email doit être un email valide
+               </div>
+             </div>
+       
+             <label for="password" class="form-label mb-0">Mot de passe</label>
+             <input class="form-control mb-2" id="exampleInputpw" 
+             placeholder="Entrer votre Mot de passe"
+             type="password"
+                 name="password"
+                 [(ngModel)]="form.password"
+                 required
+                 minlength="6"
+                 #password="ngModel"
+                 [ngClass]="{ 'is-invalid': f.submitted && password.errors }"      
+             >
+             <div class="invalid-feedback" *ngIf="password.errors && f.submitted">
+               <div *ngIf="password.errors['required']">Mot de passe obligatoire</div>
+               <div *ngIf="password.errors['minlength']">
+                 Le Mot de passe doit au moins avoir 6 charactères
+               </div>
+             </div>
+       
+             <label for="confirmPassword" class="form-label mb-0">Confirmer mot de passe</label>
+             <input  class="form-control mb-3" id="exampleInputconfirmPw" aria-describedby="emailHelp"
+             placeholder="Confirmer votre Mot de passe"
+             type="password"
+            
+             name="confirmPassword"
+             [(ngModel)]="form.confirmPassword"
+             required
+             minlength="6"
+             #confirmPassword="ngModel"
+             [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.errors }"
+       
+             >
+             <div class="invalid-feedback" *ngIf="confirmPassword.errors && f.submitted">
+               <div *ngIf="confirmPassword.errors['required']"> Confirmer Mot de passe obligatoire</div>
+               <div *ngIf="confirmPassword.errors['minlength']">
+                 Confirmer Mot de passe doit au moins avoir 6 charactères
+               </div>
+             </div>
+       
+             <!-- <button type="submit" class="btn btn-primary">Envoyer</button> -->
+             <input type="submit" class="form-control button " value="Créer un compte" style="background: #FBC201; color: white;" />
+             
+             <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+               connection non reussie<br />{{ errorMessage }}
+             </div>
+            </form>
+            <div class="alert alert-success" *ngIf="isSuccessful">
+             Compte créer avec succès!
+           </div>
+           </div>
+          
+  
+        </div>
+      </div>
+    </div>
+

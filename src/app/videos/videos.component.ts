@@ -25,6 +25,8 @@ export class VideosComponent implements OnInit{
   videoer: any;
   User : any
 
+  fruitLegume:any
+
   form: any = {
     file: null,
     videorecu: null,
@@ -40,6 +42,12 @@ export class VideosComponent implements OnInit{
   ngOnInit() {
     this.touteLesVideo()
      this.User = this.storageService.getUser();
+
+     this.legumeFruitService.GetLegumeFruit().subscribe(data=>{
+      this.fruitLegume = data;
+      console.log(this.fruitLegume)
+  }
+    )
   
   }
 
@@ -87,7 +95,7 @@ changement(){
 openModal(nom : any, id : number) {
   Swal.fire({
     title: nom,
-    text: " Voulez-vous vraiment supprimer ce fruit ? ",
+    text: " Voulez-vous vraiment supprimer cette video ? ",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#399C28',
@@ -97,7 +105,7 @@ openModal(nom : any, id : number) {
   }).then((result) => {
     if (result.isConfirmed) {
       //suppp
-      this.legumeFruitService.supprimerLegumesFruits(id).subscribe(data => {
+      this.videoService.supprimerVideo(id).subscribe(data => {
         this.touteLesVideo()
 
       console.log(id)
@@ -110,13 +118,13 @@ openModal(nom : any, id : number) {
     }
   });
 }
-touteLesVideo(){
-  this.videoService.getVideo().subscribe(data=>{
-    this.video = data;
-    console.log(this.legumeFruit)
-   })
+  touteLesVideo(){
+    this.videoService.getVideo().subscribe(data=>{
+      this.video = data;
+      console.log(this.legumeFruit)
+    })
 
-}
+  }
 
 }
 

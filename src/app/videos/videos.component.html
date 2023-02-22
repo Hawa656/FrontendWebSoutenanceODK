@@ -131,7 +131,7 @@
             <label for="legumeFruit">Selectionner le legume ou fruit concerné</label>
             <select name="legumeFruit.id" [(ngModel)]="form.legumeFruit" id="pet-select" class="form-control">
               <!-- <option>selectionner le legume ou fruit concerné<option> -->
-              <option value="{{LegumeFruit.id}}" *ngFor="let LegumeFruit of legumeFruit">{{LegumeFruit.nom}}</option>
+              <option value="{{LegumeFruit.id}}" *ngFor="let LegumeFruit of fruitLegume">{{LegumeFruit.nom}}</option>
               <!-- <option value="Fruit">Fruit</option> -->
             </select>
           </div>

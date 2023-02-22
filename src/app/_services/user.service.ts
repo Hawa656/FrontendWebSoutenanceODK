@@ -6,10 +6,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  api='http://localhost:8080/api/auth/';
+  api='http://localhost:8080/api/auth';
 
   constructor(private http: HttpClient) { }
 
+  //AFFICHAGE DES LEGUMES 
+  getUsers():Observable<any>{
+    return this.http.get(`${this.api}/listeUser`);
+  }
   
   //AFFICHAGE DES USER PAR ROLE 
   getListUserByRole(role:string) : Observable<any>{

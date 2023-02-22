@@ -28,6 +28,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ConseilsComponent } from './conseils/conseils.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { ReponsesComponent } from './reponses/reponses.component';
+import { UsersComponent } from './users/users.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -49,6 +51,7 @@ import { ReponsesComponent } from './reponses/reponses.component';
     ConseilsComponent,
     QuestionsComponent,
     ReponsesComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +66,7 @@ import { ReponsesComponent } from './reponses/reponses.component';
     MatListModule,
     HttpClientModule,
     FormsModule,
+    NgxPaginationModule,
     Ng2SearchPipeModule
   ],
   providers: [httpInterceptorProviders],
