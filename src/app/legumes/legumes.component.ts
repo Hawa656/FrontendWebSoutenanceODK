@@ -37,15 +37,7 @@ export class LegumesComponent implements OnInit {
     idTuto:null
   };
   
-  // forms: any = {
-  //   nom: '',
-  //   description: '',
-  //   arrosage: '',
-  //   periodeNormal: '',
-  //   dureeFloraison: '',
-  //   type: '',
-  //   idTuto: '',
-  // };
+  
   file: any;
   isSuccessful = false;
   isSignUpFailed = false;

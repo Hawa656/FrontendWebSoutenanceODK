@@ -1,8 +1,8 @@
-<h1 class="fw-bolder text-dark  h1" >Tutoriels Vidéos</h1>
+<h1 class="fw-bolder text-dark  h1" style="line-height: normal;">Tutoriels Vidéos</h1>
 
 <div class="container py-3">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-3 mb-3">
         <select class="form-select" aria-label="Filtrer" (change)="changement()"   name="textFiltree"  [(ngModel)]="textFiltree">
           <label for="filtre" class="text-dark">Filtrer</label>
           <option selected>Filtrer</option>
@@ -11,7 +11,7 @@
         </select>
         </div>
      
-      <div class="col-md-6 ">
+      <div class="col-md-6 mb-3">
         <div class="input-group">
           <input [(ngModel)]="searchText" type="search" class="form-control rounded" placeholder="Search"
             aria-label="Search" aria-describedby="search-addon" />

@@ -5,17 +5,26 @@
   </div>
   
   <div class="container py-3">
-    <div class="row">
-      <div class="col-9 ">
+    <div class="row mb-3">
+      
+      <div class="col-4">
+        <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn "
+          style="width: 100%;background: #FBC201; color: white;">Ajouter un Fruit</button>
+      </div>
+      <div class="col-4">
+        <button   (click)="openDialog()" type="button" class="btn " style="width: 100%;background: #FBC201; color: white;">Ajouter un
+          tutoriel</button>
+      </div>
+      <div class="col-4">
+        <button (click)="openDialog1()" type="button" class="btn "
+          style="width: 100%;background: #FBC201; color: white;">Ajouter une etape</button>
+      </div>
+      <div class="col-12 mb-3 mt-3">
         <div class="input-group">
           <input [(ngModel)]="searchText" type="search" class="form-control rounded" placeholder="Search"
             aria-label="Search" aria-describedby="search-addon" />
-          <button type="button" class="btn btn-outline-primary">Rechercher</button>
+          <button type="button" class="btn btn-outline">search</button>
         </div>
-      </div>
-      <div class="col-3">
-        <button routerLink="/ajouter-legume-fruit" type="button" class="btn "
-          style="width: 100%;background: #399C28; color: white;">Ajouter un tutoriel</button>
       </div>
     </div>
   </div>
@@ -53,7 +62,113 @@
       </div>
   
   
-      
+       <!-- =======================================MODAL AJOUTER LEGUMEFRUIT====================================================== -->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter une vidéo</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+
+            <form action="" method="post" *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()"
+              #f="ngForm" novalidate>
+              <div class="container">
+                <h2 class="text-center mb-3">Ajouter Un Fruit </h2>
+                <fieldset>
+                  <!-- <div class="row mb-3"> -->
+                  <!-- <div class="row"> -->
+                  <div class="row mb-3">
+                    <div class="form-group col-12 col-md-6 ">
+                      <label for="NomRegion">Nom </label>
+                      <input class="form-control" id="inputNomRegion" placeholder="" type="text" name="nom"
+                        [(ngModel)]="form.nom" required #nom="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && nom.errors }">
+                    </div>
+                    <div class="invalid-feedback" *ngIf="nom.errors && f.submitted">
+                      <div *ngIf="nom.errors['required']">Le nom est obligatoire</div>
+                    </div>
+
+                    <div class="form-group col-12 col-md-6 ">
+                      <label for="type">Type</label>
+                      <select name="type" [(ngModel)]="form.type" id="pet-select" class="form-control">
+                        <!-- <option value=""><i class="bi bi-chevron-down"></i><option>  -->
+                        <option [value]="Type.type" *ngFor="let Type of types">{{Type.type}}</option>
+
+                      </select>
+                      <!-- </div>   -->
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="form-group">
+                      <label for="Description">Description du fruit ou légume</label>
+                      <textarea class="form-control" id="Description" rows="3" placeholder="" name="description"
+                        [(ngModel)]="form.description" required #description="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && description.errors }"></textarea>
+                    </div>
+                  </div>
+                  <!-- </div> -->
+                  <div class="row  mb-3">
+                    <div class="form-group col-12 col-md-6 ">
+                      <label for="periodeNormal">Période normal</label>
+                      <input type="text" name="form.periodeNormal" class="form-control" id="form.periodeNormal"
+                        placeholder="" name="periodeNormal" [(ngModel)]="form.periodeNormal" required
+                        #periodeNormal="ngModel" [ngClass]="{ 'is-invalid': f.submitted && periodeNormal.errors }">
+                    </div>
+                    <div class="form-group col-12 col-md-6 ">
+                      <label for="LangueMajoritairementParlée">Arrosage</label>
+                      <input type="text" class="form-control" name="" id="inputLangueMajoritairementParlée"
+                        placeholder="" name="arrosage" [(ngModel)]="form.arrosage" required #arrosage="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && arrosage.errors }">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="form-group col-12 col-md-12 ">
+                      <label for="ChiffresPopulation">Récolte</label>
+                      <input type="text" class="form-control" id="dureeFloraison" placeholder=""
+                        name="dureeFloraison" [(ngModel)]="form.dureeFloraison" required #dureeFloraison="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && dureeFloraison.errors }">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="form-group  mb-3">
+                      <label for="ChiffresPopulation">Photo</label>
+                      <input type="file" (change)="filechange($event)" class="form-control" id="inputChiffresPopulation"
+                        placeholder="">
+                    </div>
+
+
+                    <div class="form-group col-12 col-md-6 mb-3">
+                      <label for="type">choisir Tutoriel</label>
+                      <select name="type"  [(ngModel)]="form.idTuto" id="pet-select" class="form-control">
+                        <!-- <option value=""><i class="bi bi-chevron-down"></i><option>  -->
+                        <option *ngFor="let tuto of tutos" [value]="tuto.id">{{tuto.titre}}</option>
+
+                      </select>
+
+                      
+                    </div>
+
+                    <div class="col-12">
+                     
+                      <button type="submit" style="width: 100%; background: #FBC201; border: none;"
+                      class="btn mb-2 connexion text-white align-items-center">Valider</button>
+                     
+                     </div>
+                    <div class="alert alert-warning" *ngIf="f.submitted && isSuccessful">
+                      legume non Ajouter!
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </form>
+            <div class="alert alert-success" *ngIf="isSignUpFailed">
+              legume ajouter avec succès!<br />{{ errorMessage }}
+            </div>
+
   
   
   

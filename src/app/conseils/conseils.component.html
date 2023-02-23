@@ -9,14 +9,14 @@
 </div>
 <div class="container py-3">
     <div class="row">
-      <div class="col-12 col-md-9 ">
+      <div class="col-12 col-md-9 mb-3">
         <div class="input-group">
           <input [(ngModel)]="searchText" type="search" class="form-control rounded" placeholder="Search"
             aria-label="Search" aria-describedby="search-addon" />
           <button type="button" class="btn btn-outline-primary" >Rechercher</button>
         </div>
       </div>
-      <div class="col-12 col-md-3">
+      <div class="col-12 col-md-3 mb-3">
         <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn "
           style="width: 100%;background: #399C28; color: white;">Ajouter un Conseil</button>
       </div>
@@ -28,7 +28,7 @@
    <div class="container ">
     <div class="row princ mb-3 p-0 m-0" *ngFor="let Conseil of conseil| filter:searchText" (click)="goToDetailConseils(Conseil.id)">
        
-            <div class="col-5 img2 ">
+            <div class="col-12 col-md-5 img2 ">
                 <img src="{{Conseil.photo}}" alt="image de conseil"  height="100vh" style="padding: 0;" class=" image">
               </div>
               <div  class=" textLeft col-7 " >

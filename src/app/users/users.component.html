@@ -6,7 +6,7 @@
 
  <div class="container py-3 mt-4">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-3 mb-3">
         <select class="form-select" aria-label="Filtrer"   name="textFiltree"  [(ngModel)]="textFiltree">
           <label for="filtre" class="text-dark">Filtrer</label>
           <option selected>Tout</option>
@@ -15,14 +15,14 @@
         </select>
         </div>
      
-      <div class="col-md-6 ">
+      <div class="col-md-6 mb-3">
         <div class="input-group">
           <input [(ngModel)]="searchText" type="search" class="form-control rounded" placeholder="Search"
             aria-label="Search" aria-describedby="search-addon" />
           <button type="button" class="btn btn-outline-primary">Rechercher</button>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3 mb-3">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 100%;background: #399C28;border: none; color: white;">
           Ajouter un Admin
         </button>

@@ -22,8 +22,16 @@
                             <div class="form-group col-12 ">
                               <label for="periodeNormal">Etape</label>
                               <textarea class="form-control" id="etape" rows="3" placeholder="" name="etape"
-                                [(ngModel)]="form.etape" required #etape="ngModel"
+                                [(ngModel)]="form.etape" required #etape="ngModel"  maxlength="150"
                                 [ngClass]="{ 'is-invalid': f.submitted && etape.errors }"></textarea>
+
+                                <div class="invalid-feedback" *ngIf="etape.errors && f.submitted">
+                                  <div *ngIf="etape.errors['required']">L'etape est obligatoire</div>
+                          
+                                  <div *ngIf="etape.errors['maxlength']">
+                                    L'etape doit au plus avoir 150 caratères
+                                  </div>
+                                </div>
                             </div>
                             
                             
