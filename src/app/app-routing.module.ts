@@ -12,6 +12,10 @@ import { ConseilsComponent } from './conseils/conseils.component';
 import { UsersComponent } from './users/users.component';
 import { AjoutTutorielComponent } from './ajout-tutoriel/ajout-tutoriel.component';
 import { AjoutEtapeComponent } from './ajout-etape/ajout-etape.component';
+import { LegumedetailsComponent } from './legumedetails/legumedetails.component';
+import { ForumComponent } from './forum/forum.component';
+import { ForumDetailComponent } from './forum-detail/forum-detail.component';
+import { ModifierlegumefruitComponent } from './modifierlegumefruit/modifierlegumefruit.component';
 
 const routes: Routes = [
   {path:'', redirectTo: 'connexion', pathMatch: 'full'},
@@ -27,6 +31,10 @@ const routes: Routes = [
   {path:'users', component:UsersComponent},
   {path:'ajout-tutoriel', component:AjoutTutorielComponent},
   {path:'etape', component:AjoutEtapeComponent},
+  {path:'legumedetails', component:LegumedetailsComponent},
+  {path:'forum', component:ForumComponent},
+  {path:'forum-detail/:id', component:ForumDetailComponent},
+  {path:'modifierlegumefruit/:id', component:ModifierlegumefruitComponent},
 ];
 
 @NgModule({

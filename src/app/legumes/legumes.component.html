@@ -6,13 +6,14 @@
 
 <div class="container py-3">
   <div class="row mb-3">
-    
+
     <div class="col-4">
       <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn "
         style="width: 100%;background: #399C28; color: white;">Ajouter un Légume</button>
     </div>
     <div class="col-4">
-      <button   (click)="openDialog()" type="button" class="btn " style="width: 100%;background: #399C28; color: white;">Ajouter un
+      <button (click)="openDialog()" type="button" class="btn "
+        style="width: 100%;background: #399C28; color: white;">Ajouter un
         tutoriel</button>
     </div>
     <div class="col-4">
@@ -49,8 +50,8 @@
             <div class="col-6 col-md-5">
               <div class="iconss align-items-center justify-content-center">
                 <div class="d-flex">
-                  <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i></span>
-                  <i class="bi bi-eye"></i>
+                  <span (click)="updateLegume(Legume.id)"><i class="bi bi-pencil-square"></i></span>
+                  <span routerLink="/legumedetails"><i class="bi bi-eye"></i></span>
                   <span type="button" class="adpd" data-bs-toggle="modal" data-bs-target="#supprimer"
                     (click)="openModal(Legume.nom, Legume.id)"><i class="bi bi-trash"></i></span>
                 </div>
@@ -77,7 +78,7 @@
           <div class="modal-body">
 
 
-            <form action="" method="post" *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()"
+            <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()"
               #f="ngForm" novalidate>
               <div class="container">
                 <h2 class="text-center mb-3">Ajouter </h2>
@@ -131,8 +132,8 @@
                   <div class="row mb-3">
                     <div class="form-group col-12 col-md-12 ">
                       <label for="ChiffresPopulation">Récolte</label>
-                      <input type="text" class="form-control" id="dureeFloraison" placeholder=""
-                        name="dureeFloraison" [(ngModel)]="form.dureeFloraison" required #dureeFloraison="ngModel"
+                      <input type="text" class="form-control" id="dureeFloraison" placeholder="" name="dureeFloraison"
+                        [(ngModel)]="form.dureeFloraison" required #dureeFloraison="ngModel"
                         [ngClass]="{ 'is-invalid': f.submitted && dureeFloraison.errors }">
                     </div>
                   </div>
@@ -146,7 +147,7 @@
 
                     <div class="form-group col-12 col-md-6 mb-3">
                       <label for="type">choisir Tutoriel</label>
-                      <select name="type"  [(ngModel)]="form.idTuto" id="pet-select" class="form-control">
+                      <select name="type" [(ngModel)]="form.idTuto" id="pet-select" class="form-control">
                         <!-- <option value=""><i class="bi bi-chevron-down"></i><option>  -->
                         <option *ngFor="let tuto of tutos" [value]="tuto.id">{{tuto.titre}}</option>
 
@@ -155,16 +156,16 @@
                       <!-- <select [(ngModel)]="form.idTuto">
                         <option *ngFor="let tuto of tutos" [value]="tuto.id">{{tuto.titre}}</option>
                       </select> -->
-                      
+
                       <!-- </div>   -->
                     </div>
 
                     <div class="col-12">
-                     
+
                       <button type="submit" style="width: 100%; background: #FBC201; border: none;"
-                      class="btn mb-2 connexion text-white align-items-center">Valider</button>
-                     
-                     </div>
+                        class="btn mb-2 connexion text-white align-items-center">Valider</button>
+
+                    </div>
                     <div class="alert alert-warning" *ngIf="f.submitted && isSuccessful">
                       legume non Ajouter!
                     </div>
@@ -181,15 +182,15 @@
 
             <!-- Small modal -->
 
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+
+
+
+
             <!-- <div class="modal fade" id="exampleTuto" tabindex="-1" aria-labelledby="exampleTutoLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -205,9 +206,9 @@
                       <div class="container">
                         <h2 class="text-center mb-3">Ajouter </h2>
                         <fieldset> -->
-                          <!-- <div class="row mb-3"> -->
-                          <!-- <div class="row"> -->
-                          <!-- <div class="row mb-3">
+            <!-- <div class="row mb-3"> -->
+            <!-- <div class="row"> -->
+            <!-- <div class="row mb-3">
                             <div class="form-group col-12 col-md-12 ">
                               <label for="NomRegion">Titre du tutoriel </label>
                               <input class="form-control" id="inputNomRegion" placeholder="" type="text" name="nom"
@@ -267,7 +268,7 @@
             <!-- =======================================MODA MODIFIERL====================================================== -->
 
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -305,10 +306,10 @@
                             <div class="form-group">
                               <label for="Description">Description </label>
                               <textarea class="form-control" id="Description" rows="3" placeholder="" name="description"
-                                [(ngModel)]="form.description" required #description="ngModel"  
+                                [(ngModel)]="form.description" required #description="ngModel"
                                 [ngClass]="{ 'is-invalid': f.submitted && description.errors }"></textarea>
-                               
-                                <!-- <div class="invalid-feedback" *ngIf="nom.errors && f.submitted">
+
+                              <!-- <div class="invalid-feedback" *ngIf="nom.errors && f.submitted">
                                   
                                   <div *ngIf="nom.errors['maxlength']">
                                     Le nom doit au plus avoir 20 caratères

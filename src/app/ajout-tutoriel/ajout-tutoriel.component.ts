@@ -11,6 +11,7 @@ export class AjoutTutorielComponent implements OnInit{
   video:any
   legumeFruit:any
   fruitLegume:any
+  legume: any;
   constructor(private legumeFruitService: LegumeFruitService,private videoService: VideoService){}
   ngOnInit() {
     this.touteLesVideo()
@@ -54,6 +55,8 @@ export class AjoutTutorielComponent implements OnInit{
     this.legumeFruitService.PostTutoriel(this.forms, legumeFruit).subscribe({
 
       next: data => {
+        location.reload();
+        this.tousLesLegumes()
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
@@ -71,6 +74,14 @@ export class AjoutTutorielComponent implements OnInit{
       console.log(this.legumeFruit)
     })
 
+  }
+
+  tousLesLegumes() {
+    //AFFICHER LES LEGUMES 
+    this.legumeFruitService.getLegume().subscribe(data => {
+      this.legume = data;
+      console.log(this.legume)
+    })
   }
 
 }

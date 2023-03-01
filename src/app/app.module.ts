@@ -33,6 +33,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AjoutTutorielComponent } from './ajout-tutoriel/ajout-tutoriel.component';
 import { AjoutEtapeComponent } from './ajout-etape/ajout-etape.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ModifierlegumefruitComponent } from './modifierlegumefruit/modifierlegumefruit.component';
+import { LegumedetailsComponent } from './legumedetails/legumedetails.component';
+import { ForumComponent } from './forum/forum.component';
+import { ForumDetailComponent } from './forum-detail/forum-detail.component';
 
 
 
@@ -57,6 +61,10 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     UsersComponent,
     AjoutTutorielComponent,
     AjoutEtapeComponent,
+    ModifierlegumefruitComponent,
+    LegumedetailsComponent,
+    ForumComponent,
+    ForumDetailComponent,
     
     
   

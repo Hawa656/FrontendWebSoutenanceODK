@@ -70,6 +70,7 @@ export class VideosComponent implements OnInit{
     console.log(this.form)
     this.videoService.AjoutVideo(this.file,video, legumeFruit, this.User.id ).subscribe({
       next: data => {
+        location.reload();
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;

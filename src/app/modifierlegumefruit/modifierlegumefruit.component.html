@@ -1,0 +1,67 @@
+<div class="container ">
+    <div class="tout mt-4">
+      <form #updateLegume ="ngForm" (ngSubmit)="onSubmit()">
+
+        <h2 class="text-center p-4 fs-1 fw-bold">Modifier</h2>
+        <fieldset>
+
+          <div class="row mb-3">
+            <div class="container mb-3">
+              <img style="height: 400px; width: 100%;" src="{{legumeModif.photo}}" alt="photo">
+            </div>
+          </div>  
+            <div class="row mb-3">
+              <div class="form-group col-12 col-md-6 ">
+                <label for="NomRegion">Nom </label>
+                <input class="form-control" id="inputNomRegion" placeholder="" type="text" name="nom"  [(ngModel)]="legumeModif.nom">
+              </div>
+            
+              <div class="form-group col-12 col-md-6 mb-3">
+                <label for="ChiffresPopulation">Récolte</label>
+                <input type="text" class="form-control" id="inputChiffresPopulation" placeholder=""
+                  name="dureeFloraisaon"  [(ngModel)]="legumeModif.dureeFloraisaon" required
+                  #dureeFloraisaon="ngModel"
+                  >
+              </div>
+            </div>
+            
+
+            
+            <div class="row mb-3">
+              <div class="form-group mb-3">
+                <label for="Description">Description </label>
+                <textarea class="form-control" id="Description" rows="3" placeholder="" name="description"
+                [(ngModel)]="legumeModif.description">
+                </textarea>
+              </div>
+            </div>
+          <!-- </div> -->
+          <div class="row mb-3">
+            <div class="form-group col-12 col-md-6 mb-3">
+              <label for="periodeNormal">Période normal</label>
+              <input type="text" name="periodeNormal" class="form-control" id="form.periodeNormal"
+                placeholder="" name="periodeNormal"  [(ngModel)]="legumeModif.periodeNormal" required
+                #periodeNormal="ngModel"
+              >
+            </div>
+            <div class="form-group col-12 col-md-6 mb-3">
+              <label for="LangueMajoritairementParlée">Arrosage</label>
+              <input type="text" class="form-control" name="" id="inputLangueMajoritairementParlée"
+                placeholder="" name="arrosage"  [(ngModel)]="legumeModif.arrosage" required #arrosage="ngModel"
+               >
+            </div>
+          </div>
+          
+            <div class="row">
+              <button type="submit" 
+            class="btn btn-primary mb-2 connexion text-white align-items-center" style=" background: #FBC201; border: none;">Valider</button>
+          
+            </div>
+         
+     
+        </fieldset>
+      </form>
+      <div class="alert alert-success" *ngIf="isSignUpFailed">
+        Tutoriel modifier avec succès!<br />{{ errorMessage }}
+    </div>
+</div>

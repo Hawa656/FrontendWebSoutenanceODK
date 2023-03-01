@@ -99,6 +99,8 @@ export class FruitsComponent implements OnInit {
     this.legumeFruitService.PostLegumeFruit(nom, description, arrosage, periodeNormal, dureeFloraison, this.file,  type,idTuto, this.User.id).subscribe({
       
       next: data => {
+        //pour actualiser la page sur laquelle on se trouve
+        location.reload();
         this.tousLesFruits()
         console.log(data);
         this.isSuccessful = true;
@@ -145,6 +147,7 @@ openModal(nom : any, id : number) {
     if (result.isConfirmed) {
       //suppp
       this.legumeFruitService.supprimerLegumesFruits(id).subscribe(data => {
+        location.reload();
         this.tousLesFruits()
 
       console.log(id)

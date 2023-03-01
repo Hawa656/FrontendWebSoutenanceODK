@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Legume } from '../models/Legume';
 
 const AUTH_API = 'http://localhost:8080/api/legumefruit/';
 const AUTH_API1 = 'http://localhost:8080/api/tuto/';
@@ -34,6 +35,10 @@ export class LegumeFruitService {
     return this.http.get(`${this.api1}/lireFruits`)
   }
 
+  updateLegume(id: number, legume:Legume): Observable<Object>{
+    return this.http.put(`${this.api1}/modifierLegumesFruits/${id}`, legume);
+  }
+ 
   //AFFICHE (la video de la page legumeFruit) LES INFO SUR LEGUMESFRUITS, VIDEO ,TUTORIELS
   getTousLesInfoSurUnLegumeFruit(idLegumesFruits:any):Observable<any>{
     return this.http.get(`${this.api2}/videoparIdLegumeFruit/${idLegumesFruits}`);
@@ -134,11 +139,17 @@ export class LegumeFruitService {
   }
   
 
+   modifierLegumesFruits(id: number, legumesFruits: any): Observable<any> {
+    const url = `${this.api1}/modifierLegumesFruits/${id}`;
+    return this.http.put<any>(url, legumesFruits);
+  }
+  
+
 
   // +++++++++++++++++MODIFIER UN LEGUMEFRUIT+++++++++++++++++++++++
-  modifierLegumeFruit(nom: string, description: string, arrosage: string, periodeNormal: string, dureeFloraisaon: string, file: File, titre: string, etape1: string,etape2: string,etape3: string,etape4: string, etatDeLaTerre: string, espacementEntreGraine: string, type:string, iduser:number):Observable<any> {
+  modifierLegumeFruit(nom: string, description: string, arrosage: string, periodeNormal: string, dureeFloraisaon: string, file: File,  type:string, id:number):Observable<any> {
     return this.http.put(
-      AUTH_API + 'modifierLegumesFruits/' + `${iduser}`,
+      AUTH_API + 'modifierLegumesFruits/' + `${id}`,
       {
         "nom":nom,
          "description":description,
@@ -146,17 +157,10 @@ export class LegumeFruitService {
          "periodeNormal":periodeNormal,
          "dureeFloraisaon":dureeFloraisaon,
          "file":file,
-         "titre":titre,
-         "etape1":etape1,
-         "etape2":etape2,
-         "etape3":etape3,
-         "etape4":etape4,
-         "etatDeLaTerre":etatDeLaTerre,
-         "espacementEntreGraine":espacementEntreGraine,
          "type":type,
-         "iduser":iduser,
+         "iduser":id,
     },
       httpOptions
     );
   }
-}
+ }

@@ -34,12 +34,12 @@ mat-toolbar {
     }
   }
   .cercle {
-    background: #3ECDB3;
+    background: #FBC201;
     width: 40px;
     height: 40px;
     border-radius: 100%;
-    color: #fff;
-    font-weight: bold;
+    color: black;
+    // font-weight: bold;
     font-size: 1rem;
     margin: 0;
   }
@@ -48,6 +48,12 @@ mat-toolbar {
     .mat-menu-content {
       width: 160px;
     }
+  }
+  .noninitial{
+    margin-top: 400px;
+    // display: flex;
+    // justify-content: center;
+    // text-align: center;
   }
 
   .banner-image{

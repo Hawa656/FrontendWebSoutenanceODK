@@ -7,6 +7,7 @@ import { StorageService } from '../_services/storage.service';
 import {MatDialog} from '@angular/material/dialog';
 import { AjoutTutorielComponent } from '../ajout-tutoriel/ajout-tutoriel.component';
 import { AjoutEtapeComponent } from '../ajout-etape/ajout-etape.component';
+import { ModifierlegumefruitComponent } from '../modifierlegumefruit/modifierlegumefruit.component';
 
 
 
@@ -16,6 +17,7 @@ import { AjoutEtapeComponent } from '../ajout-etape/ajout-etape.component';
   styleUrls: ['./legumes.component.scss']
 })
 export class LegumesComponent implements OnInit {
+  legumesFruits:any;
   tuto:any
   tutos:any
   idLegume: any;
@@ -48,7 +50,7 @@ export class LegumesComponent implements OnInit {
   // pour la barre de recherche:
   searchText: any;
 
-  constructor(public dialog1: MatDialog,public dialog: MatDialog,private legumeFruitService: LegumeFruitService, private route: Router, private userService: UserService, private storageService: StorageService) {}
+  constructor(public dialog2: MatDialog,public dialog1: MatDialog,public dialog: MatDialog,private legumeFruitService: LegumeFruitService, private route: Router, private userService: UserService, private storageService: StorageService) {}
 
   openDialog() {
     const dialogRef = this.dialog.open(AjoutTutorielComponent);
@@ -59,7 +61,6 @@ export class LegumesComponent implements OnInit {
 
     
   }
-
   openDialog1() {
     const dialogRef = this.dialog1.open(AjoutEtapeComponent);
 
@@ -67,6 +68,19 @@ export class LegumesComponent implements OnInit {
       console.log(`Dialog result Etape: ${result}`);
     });
   }
+
+  openDialog2(id:number) {
+    alert(id)
+    const dialogRef2 = this.dialog2.open(ModifierlegumefruitComponent);
+
+    dialogRef2.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+
+    
+  }
+
+ 
   ngOnInit() {
     this.tousLesLegumes();
     this.User = this.storageService.getUser();
@@ -108,10 +122,11 @@ export class LegumesComponent implements OnInit {
       idTuto
     } = this.form;
     
-    console.log('ffffffffffffffff'+dureeFloraison)
+    console.log('ffffffffffffffff'+dureeFloraison+description)
     this.legumeFruitService.PostLegumeFruit(nom, description, arrosage, periodeNormal, dureeFloraison, this.file,  type,idTuto, this.User.id).subscribe({
       
       next: data => {
+        location.reload();
         this.tousLesLegumes()
         console.log(data);
         this.isSuccessful = true;
@@ -122,6 +137,7 @@ export class LegumesComponent implements OnInit {
         this.isSignUpFailed = true;
       }
     });
+     
   }
 
   filechange(event: any) {
@@ -173,6 +189,13 @@ export class LegumesComponent implements OnInit {
     window.location.reload();
   }
 
+  modifierLegumesFruits(id: number): void {
+    this.legumeFruitService.modifierLegumesFruits(id, this.legumesFruits)
+      .subscribe(legumesFruitsModifie => {
+        console.log('Légumes/fruits modifié : ', legumesFruitsModifie);
+      });
+  }
+
   // ========================================== RECUPERATION DE TOUS LES LEGUMES
 
   tousLesLegumes() {
@@ -184,7 +207,7 @@ export class LegumesComponent implements OnInit {
   }
 
   getTuto() {
-    //AFFICHER LES LEGUMES 
+    //AFFICHER LES TUTO 
     this.legumeFruitService.GetTUtoriel().subscribe(data => {
       this.tutos = data;
       console.log(this.tuto)
@@ -216,5 +239,10 @@ export class LegumesComponent implements OnInit {
       console.log(this.form.type)
     })
   }
+
+  updateLegume(id: number){
+    this.route.navigate(['/modifierlegumefruit', id]);
+  }
+
 
 }
