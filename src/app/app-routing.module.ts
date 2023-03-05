@@ -16,6 +16,8 @@ import { LegumedetailsComponent } from './legumedetails/legumedetails.component'
 import { ForumComponent } from './forum/forum.component';
 import { ForumDetailComponent } from './forum-detail/forum-detail.component';
 import { ModifierlegumefruitComponent } from './modifierlegumefruit/modifierlegumefruit.component';
+import { FruitdetailsComponent } from './fruitdetails/fruitdetails.component';
+import { ModifierfruitComponent } from './modifierfruit/modifierfruit.component';
 
 const routes: Routes = [
   {path:'', redirectTo: 'connexion', pathMatch: 'full'},
@@ -31,10 +33,12 @@ const routes: Routes = [
   {path:'users', component:UsersComponent},
   {path:'ajout-tutoriel', component:AjoutTutorielComponent},
   {path:'etape', component:AjoutEtapeComponent},
-  {path:'legumedetails', component:LegumedetailsComponent},
+  {path:'legumedetails/:id', component:LegumedetailsComponent},
+  {path:'fruitdetails/:id', component:FruitdetailsComponent},
   {path:'forum', component:ForumComponent},
   {path:'forum-detail/:id', component:ForumDetailComponent},
   {path:'modifierlegumefruit/:id', component:ModifierlegumefruitComponent},
+  {path:'modifierfruit/:id', component:ModifierfruitComponent},
 ];
 
 @NgModule({

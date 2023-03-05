@@ -71,6 +71,7 @@ export class VideosComponent implements OnInit{
     this.videoService.AjoutVideo(this.file,video, legumeFruit, this.User.id ).subscribe({
       next: data => {
         location.reload();
+        this.touteLesVideo()
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
@@ -82,6 +83,9 @@ export class VideosComponent implements OnInit{
     });
 }
 
+rechargement(){
+  this.ngOnInit()
+}
 changement(){
   console.log("ertyui"+this.textFiltree);
   this.videoService.getFiltrerParFruitEtLegume(this.textFiltree).subscribe(data=>{

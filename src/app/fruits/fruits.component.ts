@@ -83,6 +83,19 @@ export class FruitsComponent implements OnInit {
    
   }
 
+  rechargement(){
+    this.ngOnInit()
+  }
+  //pour limitter la longueur du text
+  limitTextarea(event: any, limit: number) {
+    const target = event.target;
+    const length = target.value.length;
+  
+    if (length > limit) {
+      target.value = target.value.substring(0, limit);
+    }
+  }
+  
   //AJOUTER LEGUME FRUIT
   onSubmit(): void {
     const { 
@@ -128,7 +141,7 @@ export class FruitsComponent implements OnInit {
 
   //LA METHODE PERMETTANT DE NAVIGER VERS LA PAGE DU DETAILS FRUIT
   goToDetailFruit(id:number){
-    return this.route.navigate(['/legume-fruit-fruit', id])
+    return this.route.navigate(['/fruitdetails', id])
   }
 
 //================================================ suprimer ===================
@@ -166,6 +179,10 @@ tousLesFruits(){
     this.fruit = data;
     console.log(this.fruit)
   })
+}
+
+updateFruit(id: number){
+  this.route.navigate(['/modifierfruit', id]);
 }
 }
 

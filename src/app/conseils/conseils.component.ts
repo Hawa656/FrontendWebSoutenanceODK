@@ -42,12 +42,23 @@ export class ConseilsComponent  implements OnInit {
    goToDetailConseils(id:number){
      return this.route.navigate(['/tabs/details-conseil', id])
    }
-
+   rechargement(){
+    this.ngOnInit()
+  }
    filechange(event: any) {
     this.file = event.target['files'][0];
     console.log(event)
   }
 
+  //pour limitter la longueur du text
+  limitTextarea(event: any, limit: number) {
+    const target = event.target;
+    const length = target.value.length;
+  
+    if (length > limit) {
+      target.value = target.value.substring(0, limit);
+    }
+  }
   onSubmit(): void {
     const { titre,description, idUser} = this.form;
     this.conseilService.PostConseil(titre,description,this.file,this.idUser).subscribe({
@@ -75,12 +86,13 @@ openModal(titre: any, idConseil: number) {
     cancelButtonColor: '#d33',
     cancelButtonText: "NON",
     confirmButtonText: 'OUI'
+    
   }).then((result) => {
     if (result.isConfirmed) {
       //suppp
       this.conseilService.supprimerConseil(idConseil).subscribe(data => {
         this.tousLesConseils()
-
+        
         console.log('dfcvghbnjk,l;kjhgfcdsfghjnk',idConseil)
         Swal.fire({
           title: 'Supprimer  avec succès',
@@ -89,6 +101,7 @@ openModal(titre: any, idConseil: number) {
           confirmButtonColor: '#3085d6',
           confirmButtonText: 'OK'
         });
+        this.rechargement()
         window.location.reload()
       });
 

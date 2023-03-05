@@ -12,6 +12,7 @@ export class AjoutTutorielComponent implements OnInit{
   legumeFruit:any
   fruitLegume:any
   legume: any;
+  tutos:any
   constructor(private legumeFruitService: LegumeFruitService,private videoService: VideoService){}
   ngOnInit() {
     this.touteLesVideo()
@@ -19,7 +20,16 @@ export class AjoutTutorielComponent implements OnInit{
     this.legumeFruitService.GetLegumeFruit().subscribe(data=>{
       this.fruitLegume = data;
       console.log(this.fruitLegume)})
+       this.getTuto();
      
+  }
+
+  getTuto() {
+    //AFFICHER LES TUTO 
+    this.legumeFruitService.GetTUtoriel().subscribe(data => {
+      this.tutos = data;
+      console.log(this.tutos)
+    })
   }
   formT: any = {
     titre: null,
@@ -55,11 +65,14 @@ export class AjoutTutorielComponent implements OnInit{
     this.legumeFruitService.PostTutoriel(this.forms, legumeFruit).subscribe({
 
       next: data => {
-        location.reload();
+        // location.reload();
+        window.location.reload()
         this.tousLesLegumes()
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+
+        this.ngOnInit();
       },
       error: err => {
         this.errorMessage = err.error.message;

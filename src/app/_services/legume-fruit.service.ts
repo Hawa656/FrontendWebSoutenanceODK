@@ -38,6 +38,9 @@ export class LegumeFruitService {
   updateLegume(id: number, legume:Legume): Observable<Object>{
     return this.http.put(`${this.api1}/modifierLegumesFruits/${id}`, legume);
   }
+  updateFruit(id: number, legume:Legume): Observable<Object>{
+    return this.http.put(`${this.api1}/modifierLegumesFruits/${id}`, legume);
+  }
  
   //AFFICHE (la video de la page legumeFruit) LES INFO SUR LEGUMESFRUITS, VIDEO ,TUTORIELS
   getTousLesInfoSurUnLegumeFruit(idLegumesFruits:any):Observable<any>{
@@ -49,6 +52,11 @@ export class LegumeFruitService {
    recupererIdLegumeFruit(id:number):Observable<any>{
     return this.http.get(`${this.api1}/RecupererIdLegumeFruit/${id}`);
   }
+
+    //RECUPERATION DE L'ID DU LEGUMES 
+    recupererIdLegumeFruitAvecTutoEtEtape(id:number):Observable<any>{
+      return this.http.get(`${this.api1}/legumes-fruits/${id}/tutoriels-etapes`);
+    }
 
   //RECUPERATION DE L'ID DU TUTORIEL 
   recupererIdTuto(idTuto:number):Observable<any>{

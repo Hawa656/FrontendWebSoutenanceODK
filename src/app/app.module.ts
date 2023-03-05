@@ -37,6 +37,8 @@ import { ModifierlegumefruitComponent } from './modifierlegumefruit/modifierlegu
 import { LegumedetailsComponent } from './legumedetails/legumedetails.component';
 import { ForumComponent } from './forum/forum.component';
 import { ForumDetailComponent } from './forum-detail/forum-detail.component';
+import { FruitdetailsComponent } from './fruitdetails/fruitdetails.component';
+import { ModifierfruitComponent } from './modifierfruit/modifierfruit.component';
 
 
 
@@ -65,6 +67,8 @@ import { ForumDetailComponent } from './forum-detail/forum-detail.component';
     LegumedetailsComponent,
     ForumComponent,
     ForumDetailComponent,
+    FruitdetailsComponent,
+    ModifierfruitComponent,
     
     
   

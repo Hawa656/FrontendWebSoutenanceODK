@@ -7,15 +7,15 @@
   <div class="container py-3">
     <div class="row mb-3">
       
-      <div class="col-4">
+      <div class="col-12 col-md-4 mb-3">
         <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn "
-          style="width: 100%;background: #FBC201; color: white;">Ajouter un Fruit</button>
+          style="width: 100%;background: #FBC201; color: white;"  (click)="getTuto()">Ajouter un Fruit</button>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-md-4 mb-3">
         <button   (click)="openDialog()" type="button" class="btn " style="width: 100%;background: #FBC201; color: white;">Ajouter un
           tutoriel</button>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-md-4 mb-3">
         <button (click)="openDialog1()" type="button" class="btn "
           style="width: 100%;background: #FBC201; color: white;">Ajouter une etape</button>
       </div>
@@ -23,7 +23,7 @@
         <div class="input-group">
           <input [(ngModel)]="searchText" type="search" class="form-control rounded" placeholder="Search"
             aria-label="Search" aria-describedby="search-addon" />
-          <button type="button" class="btn btn-outline">search</button>
+          <button type="button" class="btn btn-outline" (click)="rechargement()">search</button>
         </div>
       </div>
     </div>
@@ -36,7 +36,7 @@
   
   <div class="container">
     <div class="row">
-      <div class="col-12 col-md-6 col-lg-4" *ngFor="let Fruit of fruit| filter:searchText">
+      <div class="col-12 col-md-6 col-lg-4" *ngFor="let Fruit of fruit.reverse()| filter:searchText">
         <div class="card mb-3">
           <img src="{{Fruit.photo}}" alt="Image fruit" class="card-img-top">
           <div class="card-body">
@@ -49,8 +49,8 @@
               <div class="col-6 col-md-5">
                 <div class="iconss align-items-center justify-content-center">
                   <div class="d-flex">
-                    <i class="bi bi-pencil-square"></i>
-                    <i class="bi bi-eye"></i>
+                    <span (click)="updateFruit(Fruit.id)"><i class="bi bi-pencil-square"></i></span>
+                    <!-- <span (click)="goToDetailFruit(Fruit.id)"><i class="bi bi-eye"></i></span> -->
                     <span type="button" class="adpd" data-bs-toggle="modal" data-bs-target="#supprimer"
                     (click)="openModal(Fruit.nom, Fruit.id)"><i class="bi bi-trash" ></i></span>
                   </div>
@@ -68,7 +68,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter une vidéo</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un fruit</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -107,7 +107,8 @@
                       <label for="Description">Description du fruit ou légume</label>
                       <textarea class="form-control" id="Description" rows="3" placeholder="" name="description"
                         [(ngModel)]="form.description" required #description="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && description.errors }"></textarea>
+                       
+                        [ngClass]="{ 'is-invalid': f.submitted && description.errors }" (keyup)="limitTextarea($event, 150)"></textarea>
                     </div>
                   </div>
                   <!-- </div> -->
@@ -154,7 +155,7 @@
 
                     <div class="col-12">
                      
-                      <button type="submit" style="width: 100%; background: #FBC201; border: none;"
+                      <button (click)="rechargement()" type="submit" style="width: 100%; background: #FBC201; border: none;"
                       class="btn mb-2 connexion text-white align-items-center">Valider</button>
                      
                      </div>

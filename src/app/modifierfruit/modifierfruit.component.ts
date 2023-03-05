@@ -5,11 +5,11 @@ import { LegumeFruitService } from '../_services/legume-fruit.service';
 import { StorageService } from '../_services/storage.service';
 
 @Component({
-  selector: 'app-modifierlegumefruit',
-  templateUrl: './modifierlegumefruit.component.html',
-  styleUrls: ['./modifierlegumefruit.component.scss']
+  selector: 'app-modifierfruit',
+  templateUrl: './modifierfruit.component.html',
+  styleUrls: ['./modifierfruit.component.scss']
 })
-export class ModifierlegumefruitComponent {
+export class ModifierfruitComponent {
 
   id!: number;
   legumeModif: Legume = new Legume();
@@ -42,7 +42,7 @@ export class ModifierlegumefruitComponent {
   errorMessage = '';
   
 
-  constructor(private legumeFruitService: LegumeFruitService,private storageService: StorageService,private route: ActivatedRoute,private router: Router){
+  constructor(private legumeFruitService: LegumeFruitService,private storageService: StorageService,private route: ActivatedRoute,private router:Router){
     this.User = this.storageService.getUser();
   }
 
@@ -91,14 +91,12 @@ export class ModifierlegumefruitComponent {
 
 
   onSubmit(){
-    this.legumeFruitService.updateLegume(this.id, this.legumeModif).subscribe( data =>{
-      this.router.navigate(['/legumes'])
+    this.legumeFruitService.updateFruit(this.id, this.legumeModif).subscribe( data =>{
+      this.router.navigate(['/fruits'])
       console.log(data);
     }
     , error => console.log(error));
   }
 
-
-  
 
 }

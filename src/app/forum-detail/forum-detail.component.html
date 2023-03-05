@@ -55,20 +55,20 @@
         
   
           <div class="row align-items-center">
-            <div class="col-9">
+            <div class="col-10">
               <div class="form-group">
                 <label for="exampleFormControlTextarea1" class="fw-bold mb-1">Repondre à une question</label>
-                <textarea class="form-control" name="reponse" id="exampleFormControlTextarea1" rows="3" placeholder="question ici..."
+                <textarea class="form-control" name="reponse" id="exampleFormControlTextarea1" rows="6" placeholder="Repondez à la question ici..."
                 [(ngModel)]="form.reponse" required #reponse="ngModel"
                 [ngClass]="{ 'is-invalid': f.submitted && reponse.errors }"
                 ></textarea>
               </div>
             </div>
-            <div class="col-3">
-              <button type="submit" style="--background: #399C28;">
+            <div class="col-2">
+              <input type="submit" style="--background: #399C28;">
                 <!-- <ion-icon name="navigate-circle-outline" class="fs-1">
                 </ion-icon> -->
-              </button>
+             
         
             </div>
           </div>

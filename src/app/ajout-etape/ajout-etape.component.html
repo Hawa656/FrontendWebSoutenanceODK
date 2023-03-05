@@ -40,7 +40,7 @@
                           <div class="row  mb-3">
                             <div class="form-group  mb-3">
                                 <label for="ChiffresPopulation">Photo</label>
-                                <input type="file" (change)="filechange($event)" class="form-control" id="photo"
+                                <input required  type="file" (change)="filechange($event)" class="form-control" id="photo"
                                   placeholder="">
                               </div>
                             
@@ -72,6 +72,6 @@
                         </fieldset>
                       </div>
                     </form>
-                    <div class="alert alert-success" >
-                      Etape ajouter avec succès!<br />{{ errorMessage }}
+                    <div class="alert alert-success" *ngIf="isSignUpFailed">
+                      legume ajouter avec succès!<br />{{ errorMessage }}
                     </div>

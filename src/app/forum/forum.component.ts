@@ -11,7 +11,8 @@ import { StorageService } from '../_services/storage.service';
 export class ForumComponent {
 
   User: any
-  
+ 
+
  
   postreponse: any
   reponse: any

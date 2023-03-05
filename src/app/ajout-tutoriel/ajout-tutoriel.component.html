@@ -48,12 +48,12 @@
                              
                              </div>
                             <div class="alert alert-warning" *ngIf="f.submitted && isSuccessful">
-                              legume non Ajouter!
+                              tutoriel non Ajouter!
                             </div>
                           </div>
                         </fieldset>
                       </div>
                     </form>
-                    <div class="alert alert-success" >
-                      legume ajouter avec succès!<br />{{ errorMessage }}
+                    <div class="alert alert-success" *ngIf="isSignUpFailed">
+                      tutoriel ajouter avec succès!<br />{{ errorMessage }}
                     </div>

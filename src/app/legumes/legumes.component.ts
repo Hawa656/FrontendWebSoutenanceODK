@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LegumeFruitService } from '../_services/legume-fruit.service';
 import Swal from 'sweetalert2';
 import { UserService } from '../_services/user.service';
@@ -21,6 +21,7 @@ export class LegumesComponent implements OnInit {
   tuto:any
   tutos:any
   idLegume: any;
+  idLegumeId:any
   types: any;
   roles: string[] = [];
 
@@ -50,7 +51,7 @@ export class LegumesComponent implements OnInit {
   // pour la barre de recherche:
   searchText: any;
 
-  constructor(public dialog2: MatDialog,public dialog1: MatDialog,public dialog: MatDialog,private legumeFruitService: LegumeFruitService, private route: Router, private userService: UserService, private storageService: StorageService) {}
+  constructor(private route1 : ActivatedRoute, public dialog2: MatDialog,public dialog1: MatDialog,public dialog: MatDialog,private legumeFruitService: LegumeFruitService, private route: Router, private userService: UserService, private storageService: StorageService) {}
 
   openDialog() {
     const dialogRef = this.dialog.open(AjoutTutorielComponent);
@@ -89,29 +90,17 @@ export class LegumesComponent implements OnInit {
       this.types = data;
       console.log(this.types)
     })
+    this.idLegumeId= this.route1.snapshot.params["id"]
   }
-//AJOUTER TUTO
-  // onSubmitTuto(): void {
-  //   const { 
-  //     titre,
-  //     espacementEntreGraine,
-  //     idLegumeFruit,
-  //   } = this.formT;
-  //   this.legumeFruitService.PostTutoriel(titre, espacementEntreGraine, idLegumeFruit).subscribe({
-  //     next: data => {
-  //       console.log(data);
-  //       this.isSuccessful = true;
-  //       this.isSignUpFailed = false;
-  //     },
-  //     error: err => {
-  //       this.errorMessage = err.error.message;
-  //       this.isSignUpFailed = true;
-  //     }
-  //   });
-  // }
+
+
+  eee(){
+    this.getTuto()
+  }
 
   //AJOUTER LEGUME FRUIT
   onSubmit(): void {
+    this.tousLesLegumes()
     const { 
       nom,
       description,
@@ -122,11 +111,11 @@ export class LegumesComponent implements OnInit {
       idTuto
     } = this.form;
     
-    console.log('ffffffffffffffff'+dureeFloraison+description)
+    // console.log('ffffffffffffffff'+dureeFloraison+description)
     this.legumeFruitService.PostLegumeFruit(nom, description, arrosage, periodeNormal, dureeFloraison, this.file,  type,idTuto, this.User.id).subscribe({
       
       next: data => {
-        location.reload();
+        // location.reload();
         this.tousLesLegumes()
         console.log(data);
         this.isSuccessful = true;
@@ -137,7 +126,16 @@ export class LegumesComponent implements OnInit {
         this.isSignUpFailed = true;
       }
     });
-     
+    // location.reload();
+   
+  }
+
+  rechargement(){
+    this.ngOnInit()
+  }
+
+  goToDetailLegume(idLegumeId: number) {
+    return this.route.navigate(['/legumedetails', idLegumeId])
   }
 
   filechange(event: any) {
@@ -150,6 +148,15 @@ export class LegumesComponent implements OnInit {
     return this.route.navigate(['/legume-fruit', id])
   }
 
+   //pour limitter la longueur du text
+   limitTextarea(event: any, limit: number) {
+    const target = event.target;
+    const length = target.value.length;
+  
+    if (length > limit) {
+      target.value = target.value.substring(0, limit);
+    }
+  }
   //================================================ suprimer ===================
 
   openModal(nom: any, id: number) {
@@ -189,12 +196,12 @@ export class LegumesComponent implements OnInit {
     window.location.reload();
   }
 
-  modifierLegumesFruits(id: number): void {
-    this.legumeFruitService.modifierLegumesFruits(id, this.legumesFruits)
-      .subscribe(legumesFruitsModifie => {
-        console.log('Légumes/fruits modifié : ', legumesFruitsModifie);
-      });
-  }
+  // modifierLegumesFruits(id: number): void {
+  //   this.legumeFruitService.modifierLegumesFruits(id, this.legumesFruits)
+  //     .subscribe(legumesFruitsModifie => {
+  //       console.log('Légumes/fruits modifié : ', legumesFruitsModifie);
+  //     });
+  // }
 
   // ========================================== RECUPERATION DE TOUS LES LEGUMES
 
@@ -218,6 +225,8 @@ export class LegumesComponent implements OnInit {
   getLegumeId(id:number){
     this.idLegume=id
   }
+
+ 
 
   // onSubmit(): void {
   //   const { nom, description, arrosage, periodeNormal, dureeFloraisaon, file, titre, etape1, etape2, etape3, etape4, etatDeLaTerre, espacementEntreGraine, type, iduser } = this.form;
